@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+  />
+  <script src="https://kit.fontawesome.com/5d505c9b72.js" crossorigin="anonymous"></script>
+<style>
+    body {
+      background-color: black;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .upload-container {
+      background-color: #0d0b2d;
+      padding: 2rem;
+      border-radius: 10px;
+      color: white;
+      margin: 2rem auto;
+      max-width: 900px;
+    }
+
+    .form-control {
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid white;
+      color: white;
+      border-radius: 0;
+    }
+
+    .form-control:focus {
+      box-shadow: none;
+      border-color: #7979f8;
+    }
+
+    .upload-icon {
+      font-size: 5rem;
+      color: #7979f8;
+    }
+
+    .anime-cards .card {
+      background-color: #2d1652;
+      color: white;
+      border: none;
+    }
+
+    .btn-purple {
+      background-color: #a040fc;
+      color: white;
+    }
+
+    .btn-purple:hover {
+      background-color: #893bf0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+      <!-- NAVBAR -->
+            <!-- place navbar here -->
+            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #070522;">
+              <div class="container-fluid">
+
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                      <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarNav">
+
+                      <ul class="navbar-nav me-auto" style="width: 100%; display: flex; justify-content: flex-start; gap: 40px;">
+                          <li class="nav-item" style="display: flex; flex-direction: column; align-items: center;">
+                              <i class="fas fa-home" title="Home" style="cursor: pointer; font-size: 20px; color: #3084B8;"></i>
+                              <a class="nav-link" style="color: #3084B8; padding: 0;" href="home.html"><strong>Comunidad</strong></a>
+                          </li>
+                      
+                          <li class="nav-item" style="display: flex; flex-direction: column; align-items: center;">
+                              <i class="fa-solid fa-heart-circle-plus" title="Favoritos" style="cursor: pointer; font-size: 20px; color: white;"></i>
+                              <a class="nav-link" style="color: white; padding: 0;" href="favoritos.html">Favoritos</a>
+                          </li>
+                      
+                          <li class="nav-item" style="display: flex; flex-direction: column; align-items: center;">
+                              <i class="fa-solid fa-cloud-arrow-up" title="Upload" style="cursor: pointer; font-size: 20px; color: white;"></i>
+                              <a class="nav-link" style="color: white; padding: 0;" href="upload.html">Upload</a>
+                          </li>
+                      </ul>
+
+                      <form class="d-flex me-3">
+                          <input id="buscar" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                          <button class="btn btn-outline-success" type="submit">Buscar</button>
+                      </form>
+                      <ul class="navbar-nav">
+                          <li class="nav-item">
+                              <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                                  <i class='fas' title="Cerrar sesión" style="cursor: pointer; font: size 35px; color: white">&#xf2f6;</i>
+                                  
+                              </a>
+                          </li>
+
+                      </ul>
+                  </div>
+              </div>
+          </nav>
+</nav>
+
+  </header>
+  <main>
+    
+    <!-- MAIN CONTENT -->
+    <div class="upload-container">
+      <div class="text-center mb-4">
+        <div class="upload-icon">☁️</div>
+        <h3>Upload tu anime</h3>
+      </div>
+  
+      <div class="mb-4">
+        <input type="text" class="form-control mb-3" placeholder="Título">
+        <input type="text" class="form-control" placeholder="Descripción">
+      </div>
+  
+      <h5 class="text-white mt-5">Tus animes en la plataforma:</h5>
+      <div class="row anime-cards mt-3">
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">The evil man</h5>
+              <p class="card-text">Anime sobre peleas callejeras y la clandestinidad de Lux.</p>
+              <a href="#" class="btn btn-purple">ReVerts</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">El ninja solitario</h5>
+              <p class="card-text">Anime sobre la vida de un ninja después de la época Edo.</p>
+              <a href="#" class="btn btn-purple">ReVerts</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Nana y la realidad</h5>
+              <p class="card-text">Anime sobre una chica que se mete en el mundo de las apuestas.</p>
+              <a href="#" class="btn btn-purple">ReVerts</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+</body>
+</html>
