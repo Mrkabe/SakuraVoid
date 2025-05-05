@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Login</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <style>
+            body {
+                background: linear-gradient(to bottom left, black, black);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0%;
+                height: 100vh;
+                font-family: 'Poppins', sans-serif;
+            }
+
+            #formRegister {
+                display: none;
+            }
+
+            .btn-gradient {
+                background: linear-gradient(to right, #29a2df, #8b1db7);
+                color: white;
+                border: none;
+            } .btn-gradient:hover { opacity: 0.9;}
+ 
+            .btn-close-custom {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 32px;
+            height: 32px;
+            background-color: #1d1f3b; /* azul oscuro */
+            border: 2px solid white;
+            border-top-right-radius: 40%;
+            border-bottom-left-radius: 40%;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: opacity 0.2s ease-in-out;
+             } .btn-close-custom:hover { opacity: 0.85; }
+
+
+        </style>
+        <!-- Bootstrap CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha38 4-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <script src="../controllers/env.js"></script>
+        <script src="../controllers/auth_controller.js"></script>
+    </head>
+    <body>
+        <div class="card text-start position-relative shadow p-4" style="width: 300px; border-radius: 20px;">
+            <!--Cerrar modal-->
+            <button onclick="location.href='home.html'" class="btn-close-custom">✕</button>
+            <div class="card-body">
+                <!-- Form inicio de Sesión -->
+                <form id="formLogin" action="">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo</label>
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            name="email"
+                            aria-describedby="emailHelpId"
+                            placeholder="ejemplo@mail.com"
+                            required
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="password"
+                            name="password"
+                            placeholder="Tu_g@t0"
+                            required
+                        />
+                    </div>
+                    <div class="d-grid gap-2">
+                        <input
+                            class="btn btn-gradient"
+                            type="submit"
+                            value="Iniciar sesión"
+                        />
+                        <input
+                            class="btn btn-gradient"
+                            type="button"
+                            value="Registrarse"
+                            onclick="toggleForms()"
+                        />
+                    </div>
+                </form>
+
+                <!-- Formulario de Registro -->
+                <form id="formRegister" onsubmit="register(event)" style="display: none;">
+                    <div class="mb-3">
+                        <label for="registerName" class="form-label">Nombre</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="registerName"
+                            name="name"
+                            placeholder="Tu nombre"
+                            required
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerEmail" class="form-label">Correo</label>
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="registerEmail"
+                            name="email"
+                            placeholder="ejemplo@mail.com"
+                            required
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerPassword" class="form-label">Contraseña</label>
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="registerPassword"
+                            name="password"
+                            placeholder="Tu_g@t0"
+                            required
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerConfirmPassword" class="form-label">Confirmar Contraseña</label>
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="registerConfirmPassword"
+                            name="confirm_password"
+                            placeholder="Repite tu contraseña"
+                            required
+                        />
+                    </div>
+                    <div class="d-grid gap-2">
+                        <input
+                            class="btn btn-gradient"
+                            type="submit"
+                            value="Crear cuenta"
+                        />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
