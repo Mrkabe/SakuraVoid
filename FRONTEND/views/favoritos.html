@@ -10,7 +10,39 @@
     <style>
         body {
             background: black;
-        }
+            .anime-card {
+                cursor: pointer;
+                transition: transform 0.2s;
+                font-size: 0.9rem;
+            }
+
+            .anime-card:hover {
+                transform: scale(1.01);
+            }
+
+            .anime-card .card-img-top {
+                height: 400px; /* Reducido desde ~200px */
+                object-fit: cover;
+            }
+
+            .anime-card .card-title {
+                font-size: 1rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .anime-card .card-text {
+                font-size: 0.85rem;
+                max-height: 3.2em; /* Limita texto largo */
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .btn-author {
+                font-size: 0.75rem;
+                padding: 4px 10px;
+                border-radius: 1rem;
+            }
+                    }
     </style>
 </head>
 <body>
