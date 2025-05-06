@@ -7,67 +7,121 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
   />
 
-  <!-- Bootstrap CSS v5.2.1 -->
-  <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-  />
-  <script src="https://kit.fontawesome.com/5d505c9b72.js" crossorigin="anonymous"></script>
-<style>
-    body {
-      background-color: black;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <script src="https://kit.fontawesome.com/5d505c9b72.js" crossorigin="anonymous"></script>
+  <style>
+      body {
+        background-color: black;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
 
-    .upload-container {
-      background-color: #0d0b2d;
-      padding: 2rem;
-      border-radius: 10px;
-      color: white;
-      margin: 2rem auto;
-      max-width: 900px;
-    }
+      .upload-container {
+        background-color: #0d0b2d;
+        padding: 2rem;
+        border-radius: 10px;
+        color: white;
+        margin: 2rem auto;
+        max-width: 900px;
+      }
 
-    .form-control {
-      background-color: transparent;
-      border: none;
-      border-bottom: 1px solid white;
-      color: white;
-      border-radius: 0;
-    }
+      .form-control {
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid white;
+        color: white;
+        border-radius: 0;
+      }
 
-    .form-control:focus {
-      box-shadow: none;
-      border-color: #7979f8;
-    }
+      .form-control:focus {
+        box-shadow: none;
+        border-color: #7979f8;
+      }
 
-    .upload-icon {
-      font-size: 5rem;
-      color: #7979f8;
-    }
+      .upload-icon {
+        font-size: 5rem;
+        color: #7979f8;
+      }
 
-    .anime-cards .card {
-      background-color: #2d1652;
-      color: white;
-      border: none;
-    }
+      .btn-style {
+        background: linear-gradient(to right, #007bff, #ff69b4);
+        color: white;
+      }
 
-    .btn-purple {
-      background-color: #a040fc;
-      color: white;
-    }
+      .btn-style:hover {
+        background-color: #893bf0;
+      }
 
-    .btn-purple:hover {
-      background-color: #893bf0;
-    }
-  </style>
+      .upload-icon {
+        font-size: 6rem;
+        color: #1f0382;
+      }
+
+      .upload-section {
+        padding: 2rem;
+      }
+
+      .upload-form {
+        background-color: black;
+        padding: 2rem;
+        border-radius: 10px;
+        max-width: 600px;
+        width: 100%;
+        margin-top: 3rem;
+      }
+
+      .style-card {
+        width: 250px;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        background-color: #251479;
+        color: white;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .style-card .card-img-top {
+        height: 60%;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .style-card .card-body {
+        height: 40%;
+        padding: 10px;
+        overflow: hidden;
+      }
+
+      .style-card .card-title {
+        font-size: 14px;
+        margin-bottom: 4px;
+      }
+
+      .style-card .card-text {
+        font-size: 12px;
+        margin-bottom: 8px;
+      }
+
+      .style-card .btn-style {
+        font-size: 12px;
+      }
+
+      input::placeholder,
+      textarea::placeholder {
+        color: gray !important;
+        opacity: 1 !important;
+      }
+    </style>
 </head>
 <body>
   <header>
       <!-- NAVBAR -->
-            <!-- place navbar here -->
             <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #070522;">
               <div class="container-fluid">
 
@@ -78,8 +132,8 @@
 
                       <ul class="navbar-nav me-auto" style="width: 100%; display: flex; justify-content: flex-start; gap: 40px;">
                           <li class="nav-item" style="display: flex; flex-direction: column; align-items: center;">
-                              <i class="fas fa-home" title="Home" style="cursor: pointer; font-size: 20px; color: #3084B8;"></i>
-                              <a class="nav-link" style="color: #3084B8; padding: 0;" href="home.html"><strong>Comunidad</strong></a>
+                              <i class="fas fa-home" title="Home" style="cursor: pointer; font-size: 20px; color: white;"></i>
+                              <a class="nav-link" style="color: white; padding: 0;" href="home.html"><strong>Comunidad</strong></a>
                           </li>
                       
                           <li class="nav-item" style="display: flex; flex-direction: column; align-items: center;">
@@ -88,8 +142,8 @@
                           </li>
                       
                           <li class="nav-item" style="display: flex; flex-direction: column; align-items: center;">
-                              <i class="fa-solid fa-cloud-arrow-up" title="Upload" style="cursor: pointer; font-size: 20px; color: white;"></i>
-                              <a class="nav-link" style="color: white; padding: 0;" href="upload.html">Upload</a>
+                              <i class="fa-solid fa-cloud-arrow-up" title="Upload" style="cursor: pointer; font-size: 20px; color: #3084B8;"></i>
+                              <a class="nav-link" style="color: #3084B8; padding: 0;" href="upload.html">Upload</a>
                           </li>
                       </ul>
 
@@ -109,58 +163,88 @@
                   </div>
               </div>
           </nav>
-</nav>
-
   </header>
-  <main>
-    
-    <!-- MAIN CONTENT -->
-    <div class="upload-container">
-      <div class="text-center mb-4">
-        <div class="upload-icon">☁️</div>
-        <h3>Upload tu anime</h3>
-      </div>
   
+  <main class="d-flex flex-column align-items-center justify-content-center" style="min-height: 100vh; padding: 2rem;">
+    <!-- Formulario de subida -->
+    <div class="upload-form text-center mb-5">
+      <div class="upload-icon">
+        <i class="fas fa-cloud-upload-alt"></i>
+      </div>
+      <h3 class="text-white mb-4">Sube tu anime</h3>  
+      <!-- Sección para capítulos -->
       <div class="mb-4">
-        <input type="text" class="form-control mb-3" placeholder="Título">
-        <input type="text" class="form-control" placeholder="Descripción">
-      </div>
-  
-      <h5 class="text-white mt-5">Tus animes en la plataforma:</h5>
-      <div class="row anime-cards mt-3">
-        <div class="col-md-4">
-          <div class="card mb-3">
-            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">The evil man</h5>
-              <p class="card-text">Anime sobre peleas callejeras y la clandestinidad de Lux.</p>
-              <a href="#" class="btn btn-purple">ReVerts</a>
-            </div>
+        <div id="capitulos">
+          <div class="mb-3 p-3 rounded" style="color: white;">
+            <input type="text" class="form-control mb-3" placeholder="Título del capítulo">
+            <input type="text" class="form-control mb-3" placeholder="Descripción del capítulo">
+            <input type="file" class="form-control mb-3">
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card mb-3">
-            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">El ninja solitario</h5>
-              <p class="card-text">Anime sobre la vida de un ninja después de la época Edo.</p>
-              <a href="#" class="btn btn-purple">ReVerts</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-3">
-            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Nana y la realidad</h5>
-              <p class="card-text">Anime sobre una chica que se mete en el mundo de las apuestas.</p>
-              <a href="#" class="btn btn-purple">ReVerts</a>
-            </div>
-          </div>
-        </div>
+        <button type="button" class="btn btn-style" onclick="addChapter()">Agregar otro capítulo</button>
       </div>
     </div>
+  
+  <!-- Tarjetas de animes -->
+    <div class="container my-5">
+      <h5 class="text-white mb-3">Tus animes en la plataforma:</h5>
+      <div class="d-flex flex-wrap gap-4 justify-content-start align-items-start" style="max-width: 1400px; margin: 0 auto;">
+
+        <!-- Card individual -->
+        <div class="style-card">
+          <img class="card-img-top" src="https://i.blogs.es/9dc9a1/devil-may-cry-poster/650_1200.jpeg" alt="...">
+          <div class="card-body">
+            <h6 class="card-title">The evil man</h6>
+            <p class="card-text">Anime sobre peleas callejeras y la clandestinidad de Lux.</p>
+            <a href="#" class="btn btn-style btn-sm">ReVerts</a>
+          </div>
+        </div>
+
+        <!-- Card individual -->
+        <div class="style-card">
+          <img class="card-img-top" src="https://preview.redd.it/a1bsfelzww831.png?auto=webp&s=4e0be8ea6f166e78e09aca7520ea978ca7548c84" alt="...">
+          <div class="card-body">
+            <h6 class="card-title">Bob el constructor</h6>
+            <p class="card-text">Anime sobre la vida de un ninja después de la época Edo.</p>
+            <a href="#" class="btn btn-style btn-sm">ReVerts</a>
+          </div>
+        </div>
+
+        <!-- Card individual -->
+        <div class="style-card">
+          <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRevodaZ8FRHGzy6KUXgMnqWhrAz5ICXBomrA&s" alt="...">
+          <div class="card-body">
+            <h6 class="card-title">Nana y la realidad</h6>
+            <p class="card-text">Chica que se mete en el mundo de las apuestas.</p>
+            <a href="#" class="btn btn-style btn-sm">ReVerts</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    </div>
+
+    <!--Aqui termina-->>
   </main>
+  
+  
+  <script>
+    function addChapter() {
+      const capitulos = document.getElementById('capitulos');
+      const nuevo_capitulo = document.createElement('div');
+
+      nuevo_capitulo.classList.add('mb-3', 'p-3', 'rounded');
+      nuevo_capitulo.style.backgroundColor = '#0d0b2d';
+      nuevo_capitulo.innerHTML = `
+        <input type="text" class="form-control mb-3" placeholder="Título del capítulo">
+        <input type="text" class="form-control mb-3" placeholder="Descripción del capítulo">
+        <input type="file" class="form-control mb-3">
+      `;
+      
+      capitulos.appendChild(nuevo_capitulo);
+    }
+    
+  </script>  
         <!-- Bootstrap JavaScript Libraries -->
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -173,5 +257,6 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+
 </body>
 </html>
