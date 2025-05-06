@@ -61,6 +61,20 @@
         />
         <script src="../controllers/env.js"></script>
         <script src="../controllers/auth_controller.js"></script>
+        <script>
+            function toggleForms() {
+                let formLogin = document.getElementById('formLogin');
+                let formRegister = document.getElementById('formRegister');
+
+                if (formRegister.style.display === 'none') {
+                    formLogin.style.display = 'none';
+                    formRegister.style.display = 'block';
+                } else {
+                    formLogin.style.display = 'block';
+                    formRegister.style.display = 'none';
+                }
+            }
+        </script>
     </head>
     <body>
         <div class="card text-start position-relative shadow p-4" style="width: 300px; border-radius: 20px;">
@@ -97,11 +111,13 @@
                             class="btn btn-gradient"
                             type="submit"
                             value="Iniciar sesión"
+                            style="color: white;"
                         />
                         <input
                             class="btn btn-gradient"
                             type="button"
                             value="Registrarse"
+                            style="color: white;"
                             onclick="toggleForms()"
                         />
                     </div>
@@ -158,6 +174,7 @@
                             class="btn btn-gradient"
                             type="submit"
                             value="Crear cuenta"
+                            style="color: white;"
                         />
                     </div>
                 </form>
