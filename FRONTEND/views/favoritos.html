@@ -81,11 +81,24 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
                                 <i class='fas' title="Cerrar sesión" style="cursor: pointer; font: size 35px; color: white">&#xf2f6;</i>
-                                
                             </a>
                         </li>
-
                     </ul>
+                </div>
+            </div>
+            <div class="modal fade" id="logoutModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Cerrar sesion</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">¿Estas seguro de que deseas cerrar sesion?</div>
+                        <div class="modal-footer">
+                            <a href="login.html" class="btn btn-danger" onclick="logout()">Aceptar</a>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
