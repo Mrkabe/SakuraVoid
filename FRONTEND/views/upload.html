@@ -202,9 +202,9 @@
       <div class="mb-4">
         <div id="capitulos">
           <div class="mb-3 p-3 rounded" style="color: white;">
-            <input type="text" class="form-control mb-3" placeholder="Título del Anime">
-            <input type="text" class="form-control mb-3" placeholder="Título del capítulo">
-            <input type="text" class="form-control mb-3" placeholder="Descripción del capítulo">
+            <input type="text" class="form-control mb-3" id="nombre_anime" placeholder="Título del Anime">
+            <input type="text" class="form-control mb-3" id="descripcion_anime" placeholder="Descripción del anime">
+            <input type="text" class="form-control mb-3" id="nombre_capitulo" placeholder="Título del capítulo">
             <input type="file" class="form-control mb-3">
           </div>
         </div>
@@ -263,9 +263,7 @@
       nuevo_capitulo.classList.add('mb-3', 'p-3', 'rounded');
       nuevo_capitulo.style.backgroundColor = '#0d0b2d';
       nuevo_capitulo.innerHTML = `
-        <input type="text" class="form-control mb-3" placeholder="Título del Anime">
         <input type="text" class="form-control mb-3" placeholder="Título del capítulo">
-        <input type="text" class="form-control mb-3" placeholder="Descripción del capítulo">
         <input type="file" class="form-control mb-3">
       `;
       
