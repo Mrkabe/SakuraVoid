@@ -1,17 +1,5 @@
 const mongoose = require('mongoose');
 
-const episodeSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  number: {
-    type: Number,
-    required: true,
-    min: 1
-  }
-}, { _id: false });
 
 const animeSchema = new mongoose.Schema({
   title: {
