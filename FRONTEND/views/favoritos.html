@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Mis Favoritos - AnimeStream</title>
+    <title>Mis Favoritos - SakuraVoid</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -10,6 +10,8 @@
     <style>
         body {
             background: black;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
             .anime-card {
                 cursor: pointer;
                 transition: transform 0.2s;
@@ -42,7 +44,27 @@
                 padding: 4px 10px;
                 border-radius: 1rem;
             }
-                    }
+
+            .form-control {
+                background-color: transparent;
+                border: none;
+                border-bottom: 1px solid white;
+                color: white;
+                border-radius: 0;
+            }
+
+            .form-control:focus {
+                box-shadow: none;
+                border-color: #7979f8;
+            }
+
+            input::placeholder,
+            textarea::placeholder {
+                color: gray !important;
+                opacity: 1 !important;
+            }
+      
+                    
     </style>
 </head>
 <body>
@@ -54,28 +76,36 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="collapse navbar-collapse" id="navbarNav" style="margin-top: 10px;">
 
                     <ul class="navbar-nav me-auto" style="width: 100%; display: flex; justify-content: flex-start; gap: 40px;">
                         <li class="nav-item" style="display: flex; flex-direction: column; align-items: center;">
-                            <i class="fas fa-home" title="Home" style="cursor: pointer; font-size: 20px; color: white;"></i>
-                            <a class="nav-link" style="color: white; padding: 0;" href="home.html"><strong>Comunidad</strong></a>
+                            <a href="home.html" title="Ir al inicio">
+                                <img src="../assets/logo_transparente.png" alt="SakuraVoid" style=" width: 150px; height: 70px;">
+                            </a>
                         </li>
                     
                         <li class="nav-item" style="display: flex; flex-direction: column; align-items: center;">
-                            <i class="fa-solid fa-heart-circle-plus" title="Favoritos" style="cursor: pointer; font-size: 20px; color: #3084B8;"></i>
+                            <a href="favoritos.html" title="favoritos">
+                                <i class="fa-solid fa-heart-circle-plus" title="Favoritos" style="cursor: pointer; font-size: 20px; color: #3084B8;"></i>
+                            </a>
                             <a class="nav-link" style="color: #3084B8; padding: 0;" href="favoritos.html">Favoritos</a>
                         </li>
                     
                         <li class="nav-item" style="display: flex; flex-direction: column; align-items: center;">
-                            <i class="fa-solid fa-cloud-arrow-up" title="Upload" style="cursor: pointer; font-size: 20px; color: white;"></i>
+                            <a href="upload.html" title="Upload">
+                                <i class="fa-solid fa-cloud-arrow-up" title="Upload" style="cursor: pointer; font-size: 20px; color: white;"></i>
+                            </a>
                             <a class="nav-link" style="color: white; padding: 0;" href="upload.html">Upload</a>
                         </li>
                     </ul>
 
                     <form class="d-flex me-3">
                         <input id="buscar" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Buscar</button>
+                        <button class="btn" type="submit">
+                            <i class="fa-solid fa-magnifying-glass" id="iconobuscar" style="color: white;"></i>
+                        </button>
+
                     </form>
                     <ul class="navbar-nav">
                         <li class="nav-item">
@@ -110,10 +140,10 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
             <!-- Tarjeta 1 -->
                 <div class="col">
-                    <div class="card bg-dark text-white shadow rounded-4 h-100 anime-card" data-bs-toggle="modal" data-bs-target="#animeModal">
+                    <div class="card text-white shadow rounded-4 h-100 anime-card" data-bs-toggle="modal" data-bs-target="#animeModal" style="background-color: #251479;">
                     <div style="position: relative;">
                         <img src="https://m.media-amazon.com/images/I/81ngrpeKZWL._AC_UF894,1000_QL80_.jpg" class="card-img-top rounded-top-4" alt="Girls und paanzer">
-                        <i class="fa-solid fa-bookmark" style="position: absolute; top: 10px; right: 10px; font-size: 20px;"></i>
+                        <i class="fa-solid fa-heart" style="position: absolute; top: 10px; right: 10px; font-size: 20px;"></i>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Girls Und Panzer</h5>
@@ -127,10 +157,10 @@
 
                 <!-- Tarjeta 2 -->
                 <div class="col">
-                    <div class="card bg-dark text-white shadow rounded-4 h-100 anime-card" data-bs-toggle="modal" data-bs-target="#animeModal">
+                    <div class="card text-white shadow rounded-4 h-100 anime-card" data-bs-toggle="modal" data-bs-target="#animeModal" style="background-color: #251479;">
                     <div style="position: relative;">
                         <img src="https://m.media-amazon.com/images/I/81vuj1JYidL.jpg" class="card-img-top rounded-top-4" alt="bunny girl">
-                        <i class="fa-solid fa-bookmark" style="position: absolute; top: 10px; right: 10px; font-size: 20px;"></i>
+                        <i class="fa-solid fa-heart" style="position: absolute; top: 10px; right: 10px; font-size: 20px;"></i>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Bunny girl</h5>
@@ -144,10 +174,10 @@
 
                 <!-- Tarjeta 3 -->
                 <div class="col">
-                    <div class="card bg-dark text-white shadow rounded-4 h-100 anime-card" data-bs-toggle="modal" data-bs-target="#animeModal">
+                    <div class="card text-white shadow rounded-4 h-100 anime-card" data-bs-toggle="modal" data-bs-target="#animeModal" style="background-color: #251479;">
                     <div style="position: relative;">
                         <img src="https://static.wixstatic.com/media/a27d24_711b5afaaf3a42e18eb540fa51557b0e~mv2.jpg/v1/fill/w_568,h_794,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/a27d24_711b5afaaf3a42e18eb540fa51557b0e~mv2.jpg" class="card-img-top rounded-top-4" alt="Go-toubun">
-                        <i class="fa-solid fa-bookmark" style="position: absolute; top: 10px; right: 10px; font-size: 20px;"></i>
+                        <i class="fa-solid fa-heart" style="position: absolute; top: 10px; right: 10px; font-size: 20px;"></i>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Go-toubun no hanayome</h5>
@@ -161,10 +191,10 @@
 
                 <!-- Tarjeta 4 -->
                 <div class="col">
-                    <div class="card bg-dark text-white shadow rounded-4 h-100 anime-card" data-bs-toggle="modal" data-bs-target="#animeModal">
+                    <div class="card text-white shadow rounded-4 h-100 anime-card" data-bs-toggle="modal" data-bs-target="#animeModal" style="background-color: #251479;">
                     <div style="position: relative;">
                         <img src="https://www3.animeflv.net/uploads/animes/covers/4142.jpg" class="card-img-top rounded-top-4" alt="Danjo no Yuujou wa Seiritsu suru? (Iya, Shinai!!)">
-                        <i class="fa-solid fa-bookmark" style="position: absolute; top: 10px; right: 10px; font-size: 20px;"></i>
+                        <i class="fa-solid fa-heart" style="position: absolute; top: 10px; right: 10px; font-size: 20px;"></i>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Danjo no Yuujou wa Seiritsu suru? (Iya, Shinai!!)</h5>
@@ -178,10 +208,10 @@
 
                 <!-- Tarjeta 5 -->
                 <div class="col">
-                    <div class="card bg-dark text-white shadow rounded-4 h-100 anime-card" data-bs-toggle="modal" data-bs-target="#animeModal">
+                    <div class="card text-white shadow rounded-4 h-100 anime-card" data-bs-toggle="modal" data-bs-target="#animeModal" style="background-color: #251479;">
                     <div style="position: relative;">
                         <img src="https://www3.animeflv.net/uploads/animes/covers/989.jpg" class="card-img-top rounded-top-4" alt="Yahari Ore no Seishun Love Come wa Machigatteiru">
-                        <i class="fa-solid fa-bookmark" style="position: absolute; top: 10px; right: 10px; font-size: 20px;"></i>
+                        <i class="fa-solid fa-heart" style="position: absolute; top: 10px; right: 10px; font-size: 20px;"></i>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Yahari Ore no Seishun Love Come wa Machigatteiru</h5>
@@ -195,10 +225,10 @@
 
                 <!-- Tarjeta 6 -->
                 <div class="col">
-                    <div class="card bg-dark text-white shadow rounded-4 h-100 anime-card" data-bs-toggle="modal" data-bs-target="#animeModal">
+                    <div class="card text-white shadow rounded-4 h-100 anime-card" data-bs-toggle="modal" data-bs-target="#animeModal" style="background-color: #251479;">
                     <div style="position: relative;">
                         <img src="https://www3.animeflv.net/uploads/animes/covers/2997.jpg" class="card-img-top rounded-top-4" alt="Grand Blue">
-                        <i class="fa-solid fa-bookmark" style="position: absolute; top: 10px; right: 10px; font-size: 20px;"></i>
+                        <i class="fa-solid fa-heart" style="position: absolute; top: 10px; right: 10px; font-size: 20px;"></i>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Grand Blue</h5>
@@ -215,8 +245,11 @@
         </div>
     </div>
 
-    <footer class="text-center py-4 mt-5 bg-secondary text-white">
-        <p class="mb-0">© 2025 SakuraVoid - Todos los derechos reservados</p>
+    <footer class="text-center py-4 mt-5 text-white">
+        <div class="contenedor_footer" style="background-color: #1b1a29;">
+            <br><p class="mb-0">© 2025 SakuraVoid - Todos los derechos reservados</p>
+            <img src="../assets/logo_b.png" alt="SakuraVoid" style=" width: 150px; height: 70px; margin: 0 auto; padding: 10px; display: flex; justify-content: center; align-items: center;">
+          </div>
     </footer>
 
     <!-- Bootstrap JS -->
