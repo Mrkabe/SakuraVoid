@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
   },
   favoritos: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Anime'
+    ref: 'anime'
   }],
   joined_at: {
     type: Date,
