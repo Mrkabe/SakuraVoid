@@ -29,7 +29,7 @@ const animeSchema = new mongoose.Schema({
 
 //lili
 animeSchema.methods.setImgUrl = function setImgUrl () {
-  this.imgUrl = `localhost:3000/storage/imgs/${filename}`
+ this.imgUrl = `localhost:3000/storage/imgs/${filename}`
 
 }
 
