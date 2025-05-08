@@ -7,6 +7,8 @@ const animeSchema = new mongoose.Schema({
     required: [true, 'El título del anime es obligatorio'],
     trim: true
   },
+  description: String,
+  imgUrl: String,
   episodes: {
     type: [episodeSchema],
     validate: [array => array.length > 0, 'Debe haber al menos un episodio']
