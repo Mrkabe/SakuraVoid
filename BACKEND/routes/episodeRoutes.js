@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const episodeController = require("../controllers/episodeController");
-const { uploadVideo } = require("../storage");
+const { uploadVideo } = require("../libs/storage");
 
 // Crear episodio (sube video)
 router.post("/", uploadVideo.single("video"), episodeController.createEpisode);

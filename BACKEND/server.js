@@ -1,4 +1,7 @@
+/*
 const express = require('express');
+require('./api.js');
+
 const connectToMongo = require('./database/conection'); // <- ruta a tu archivo
 const animeRoutes = require('./routes/animeRoutes');
 const userRoutes = require('./routes/userRoutes');
@@ -16,7 +19,16 @@ app.use('/api/animes', animeRoutes);
 
 app.use('/api/users', userRoutes);
 
-
+/*
 app.listen(PORT, () => {
   console.log(`Servidor activo en http://localhost:$PORT}`);
+});*/
+
+
+const app = require('./routes/api');
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`✅ Servidor corriendo en http://localhost:${PORT}`);
 });
+
