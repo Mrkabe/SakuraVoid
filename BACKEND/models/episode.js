@@ -1,22 +1,23 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const episodeSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: [true, 'El título del episodio es obligatorio'],
-    trim: true
+    required: true,
   },
   number: {
     type: Number,
-    required: [true, 'El número del episodio es obligatorio'],
-    min: 1
+    required: true,
+  },
+  videoUrl: {
+    type: String,
+    required: true,
   },
   anime: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'anime',
-    required: true
-  }
+    ref: "Anime",
+    required: true,
+  },
 });
 
-
-module.exports = mongoose.model('Episode', episodeSchema);
+module.exports = mongoose.model("Episode", episodeSchema);
