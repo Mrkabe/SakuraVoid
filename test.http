@@ -3,11 +3,13 @@ POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-  "nombre": "Goku",
-  "correo": "goku@example.com",
-  "contrasena": "kamehameha"
+  "name": "Robert",
+  "email": "robert@example.com",
+  "password": "YaporfavorDorx"
 }
 
+###
+GET http://localhost:3000/home
 ### 📌 Obtener todos los usuarios
 GET http://localhost:3000/api/users
 
