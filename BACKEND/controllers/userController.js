@@ -1,5 +1,5 @@
-const User = require('../models/User');
-const Anime = require('../models/Anime');
+const User = require('../models/user');
+const Anime = require('../models/anime');
 
 // Crear usuario
 function createUser(req, res) {

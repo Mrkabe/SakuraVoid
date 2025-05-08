@@ -1,4 +1,4 @@
-const Anime = require('../models/Anime');
+const Anime = require('../models/anime');
 const Episode = require('../models/episode');
 
 // Crear un anime con episodios

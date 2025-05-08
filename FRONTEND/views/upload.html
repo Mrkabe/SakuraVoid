@@ -204,7 +204,11 @@
           <div class="mb-3 p-3 rounded" style="color: white;">
             <input type="text" class="form-control mb-3" id="nombre_anime" placeholder="Título del Anime">
             <input type="text" class="form-control mb-3" id="descripcion_anime" placeholder="Descripción del anime">
-            <input type="file" class="form-control mb-3" id="img_anime">
+            
+            <form action="/" method="post" enctype="multipart/form-data">
+              <input type="file" class="form-control mb-3" name="avatar_anime" />
+            </form>
+            
             <input type="number" class="form-control mb-3" id="numero_capitulo" placeholder="Número del capítulo">
             <input type="text" class="form-control mb-3" id="nombre_capitulo" placeholder="Título del capítulo">
             <input type="file" class="form-control mb-3" id="video_capitulo">
@@ -253,7 +257,9 @@
     </div>
     </div>
 
-    <!--Aqui termina-->>
+    <!--Aqui termina-->
+
+
   </main>
   
   

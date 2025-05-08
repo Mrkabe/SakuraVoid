@@ -7,8 +7,10 @@ const animeSchema = new mongoose.Schema({
     required: [true, 'El título del anime es obligatorio'],
     trim: true
   },
+  //lili
   description: String,
   imgUrl: String,
+  //fin
   episodes: {
     type: [episodeSchema],
     validate: [array => array.length > 0, 'Debe haber al menos un episodio']
@@ -23,5 +25,12 @@ const animeSchema = new mongoose.Schema({
     default: Date.now
   }
 });
+
+
+//lili
+animeSchema.methods.setImgUrl = function setImgUrl () {
+  this.imgUrl = `localhost:3000/storage/imgs/${filename}`
+
+}
 
 module.exports = mongoose.model('anime', animeSchema);
