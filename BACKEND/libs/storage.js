@@ -1,7 +1,6 @@
 
 
 
-// storage.js
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
@@ -14,7 +13,7 @@ const ensureDir = (dir) => {
 ensureDir(path.join(__dirname, "storage", "imgs"));
 ensureDir(path.join(__dirname, "storage", "videos"));
 
-// Configuración común para ambos
+// Configuración común para ambos archivos
 const generateStorage = (subdir) => multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, "storage", subdir));
@@ -25,7 +24,7 @@ const generateStorage = (subdir) => multer.diskStorage({
   }
 });
 
-// Filtros
+// Comprueba que tipo de archivo es
 const imageFilter = (req, file, cb) => {
   if (file.mimetype.startsWith("image/")) cb(null, true);
   else cb(new Error("Solo se permiten archivos de imagen."), false);
@@ -36,7 +35,7 @@ const videoFilter = (req, file, cb) => {
   else cb(new Error("Solo se permiten archivos de video."), false);
 };
 
-// Uploaders específicos
+// tamaños específicos
 const uploadImage = multer({
   storage: generateStorage("imgs"),
   fileFilter: imageFilter,
