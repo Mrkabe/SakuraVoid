@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const episodeSchema = require("./episodeSchema"); 
 
 
 const animeSchema = new mongoose.Schema({

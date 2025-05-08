@@ -9,7 +9,7 @@ function createUser(req, res) {
     return res.status(400).json({ error: 'Faltan datos obligatorios' });
   }
 
-  const newUser = new User({ name, email, passwo, favoritos: [] });
+  const newUser = new User({ name, email, password, favoritos: [] });
 
   newUser.save()
     .then(user => res.status(201).json(user))

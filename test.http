@@ -1,0 +1,93 @@
+### 📌 Crear un usuario
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+  "nombre": "Goku",
+  "correo": "goku@example.com",
+  "contrasena": "kamehameha"
+}
+
+### 📌 Obtener todos los usuarios
+GET http://localhost:3000/api/users
+
+###
+
+### 📌 Obtener un usuario por ID (REEMPLAZAR_ID)
+GET http://localhost:3000/api/users/REEMPLAZAR_ID
+
+###
+
+### 📌 Eliminar usuario (REEMPLAZAR_ID)
+DELETE http://localhost:3000/api/users/REEMPLAZAR_ID
+
+###
+
+### 📌 Crear un anime con imagen (requiere imagen local)
+POST http://localhost:3000/api/animes
+Content-Type: multipart/form-data
+
+------WebKitFormBoundary
+Content-Disposition: form-data; name="titulo"
+
+One Piece
+------WebKitFormBoundary
+Content-Disposition: form-data; name="descripcion"
+
+Aventura épica pirata
+------WebKitFormBoundary
+Content-Disposition: form-data; name="avatar_anime"; filename="onepiece.jpg"
+Content-Type: image/jpeg
+
+< ./test-imgs/onepiece.jpg
+------WebKitFormBoundary--
+
+###
+
+### 📌 Obtener todos los animes
+GET http://localhost:3000/api/animes
+
+###
+
+### 📌 Obtener anime por ID (REEMPLAZAR_ID)
+GET http://localhost:3000/api/animes/REEMPLAZAR_ID
+
+###
+
+### 📌 Eliminar anime (REEMPLAZAR_ID)
+DELETE http://localhost:3000/api/animes/REEMPLAZAR_ID
+
+###
+
+### 📌 Crear un episodio con video (requiere video local)
+POST http://localhost:3000/api/episodes
+Content-Type: multipart/form-data
+
+------WebKitFormBoundary
+Content-Disposition: form-data; name="animeId"
+
+REEMPLAZAR_ID_DEL_ANIME
+------WebKitFormBoundary
+Content-Disposition: form-data; name="titulo"
+
+Episodio 1
+------WebKitFormBoundary
+Content-Disposition: form-data; name="numero"
+
+1
+------WebKitFormBoundary
+Content-Disposition: form-data; name="video"; filename="ep1.mp4"
+Content-Type: video/mp4
+
+< ./test-videos/ep1.mp4
+------WebKitFormBoundary--
+
+###
+
+### 📌 Obtener episodios por ID de anime
+GET http://localhost:3000/api/episodes/anime/REEMPLAZAR_ID_DEL_ANIME
+
+###
+
+### 📌 Eliminar episodio por ID
+DELETE http://localhost:3000/api/episodes/REEMPLAZAR_ID_DEL_EPISODIO
