@@ -10,6 +10,7 @@ const animeSchema = new mongoose.Schema({
   //lili
   description: String,
   imgUrl: String,
+  genre: String,
   //fin
   episodes: {
     type: [episodeSchema],

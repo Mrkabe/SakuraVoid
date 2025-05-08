@@ -1,17 +1,24 @@
 const Anime = require('../models/anime');
 const Episode = require('../models/episode');
+const path = require('path');
+
 
 // Crear un anime con episodios
 function createAnime(req, res) {
-  const { title, episodes, uploadedBy } = req.body;
+  const { title, description, episodes, uploadedBy } = req.body;
 
   if (!title || !episodes || !uploadedBy) {
     return res.status(400).json({ error: 'Faltan campos requeridos' });
   }
 
+  // Construccion de la URL de la imagen
+  const imgUrl = `${req.protocol}://${req.get('host')}/storage/imgs/${req.file.filename}`;
+
   const newAnime = new Anime({
     title,
+    description,
     uploadedBy,
+    imgUrl,
     episodes: []
   });
   
