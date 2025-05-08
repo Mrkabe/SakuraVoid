@@ -14,7 +14,7 @@ function createAnime(req, res) {
     uploadedBy,
     episodes: []
   });
-
+  
   newAnime.save()
     .then(savedAnime => {
       const episodePromises = episodes.map(ep => {

@@ -1,17 +1,19 @@
+// routes/episodeRoutes.js
 const express = require("express");
 const router = express.Router();
 const episodeController = require("../controllers/episodeController");
-const multer = require("multer");
+const { uploadVideo } = require("../storage");
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "public/uploads/"),
-  filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname),
-});
+// Crear episodio (sube video)
+router.post("/", uploadVideo.single("video"), episodeController.createEpisode);
 
-const upload = multer({ storage });
-
+// Obtener episodios de un anime
 router.get("/anime/:animeId", episodeController.getEpisodesByAnime);
-router.post("/", upload.single("video"), episodeController.createEpisode);
-// También puedes agregar PUT y DELETE si lo necesitas
+
+// Eliminar episodio
+router.delete("/:id", episodeController.deleteEpisode);
+
+// Actualizar episodio (opcional con nuevo video)
+router.put("/:id", uploadVideo.single("video"), episodeController.updateEpisode);
 
 module.exports = router;

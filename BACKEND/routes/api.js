@@ -24,3 +24,7 @@ app.use("/api/episodes", episodeRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Servidor corriendo en puerto ${PORT}`));
+
+// Exponer la carpeta de archivos publicos
+app.use("/imgs", express.static(path.join(__dirname, "storage", "imgs")));
+app.use("/videos", express.static(path.join(__dirname, "storage", "videos")));
