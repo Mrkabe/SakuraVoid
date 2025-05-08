@@ -20,4 +20,5 @@ const episodeSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Episode", episodeSchema);
+// module.exports = mongoose.model("Episode", episodeSchema);
+module.exports = episodeSchema;

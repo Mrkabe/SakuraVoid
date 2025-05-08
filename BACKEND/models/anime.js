@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const episodeSchema = require("./episodeSchema"); 
 
 
 const animeSchema = new mongoose.Schema({
@@ -10,7 +11,6 @@ const animeSchema = new mongoose.Schema({
   //lili
   description: String,
   imgUrl: String,
-  genre: String,
   //fin
   episodes: {
     type: [episodeSchema],

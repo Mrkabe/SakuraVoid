@@ -1,7 +1,7 @@
 const express = require('express');
-const connectToMongo = require('./config/database'); // <- ruta a tu archivo
-const animeRoutes = require('./routes/anime');
-const userRoutes = require('./routes/user');
+const connectToMongo = require('./database/conection'); // <- ruta a tu archivo
+const animeRoutes = require('./routes/animeRoutes');
+const userRoutes = require('./routes/userRoutes');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
