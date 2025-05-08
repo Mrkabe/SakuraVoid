@@ -4,20 +4,26 @@ const path = require('path');
 
 
 // Crear un anime con episodios
-function createAnime(req, res) {
-  const { title, description, episodes, uploadedBy } = req.body;
+exports.createAnime = async (req, res) => {
+  const { title, description } = req.body;
+  let episodes;
 
-  if (!title || !episodes || !uploadedBy) {
+  try {
+    episodes = JSON.parse(req.body.episodes);
+  } catch {
+    return res.status(400).json({ error: 'Formato de episodios inválido' });
+  }
+
+  if (!title || !episodes || !req.file || !req.user) {
     return res.status(400).json({ error: 'Faltan campos requeridos' });
   }
 
-  // Construccion de la URL de la imagen
   const imgUrl = `${req.protocol}://${req.get('host')}/storage/imgs/${req.file.filename}`;
 
   const newAnime = new Anime({
     title,
     description,
-    uploadedBy,
+    uploadedBy: req.user._id,
     imgUrl,
     episodes: []
   });
@@ -56,7 +62,7 @@ function createAnime(req, res) {
 }
 
 // Obtener todos los animes
-function getAllAnimes(req, res) {
+exports.getAllAnimes = (req, res) => {
   Anime.find()
     .populate('uploadedBy', 'name email')
     .populate('episodes')
@@ -68,7 +74,7 @@ function getAllAnimes(req, res) {
 }
 
 // Obtener un anime por ID
-function getAnimeById(req, res) {
+exports.getAnimeById = (req, res) => {
   const id = req.params.id;
   Anime.findById(id)
     .populate('uploadedBy', 'name')
@@ -84,12 +90,17 @@ function getAnimeById(req, res) {
 }
 
 // Eliminar anime y sus episodios
-function deleteAnime(req, res) {
+ exports.deleteAnime = (req, res) => {
+
   const id = req.params.id;
 
   Anime.findById(id)
     .then(anime => {
       if (!anime) return res.status(404).json({ error: 'Anime no encontrado' });
+
+      if (!anime.uploadedBy.equals(req.user._id)) {
+        return res.status(403).json({ error: 'No tienes permiso para eliminar este anime' });
+      }
 
       Episode.deleteMany({ anime: anime._id })
         .then(() => {
@@ -111,9 +122,3 @@ function deleteAnime(req, res) {
     });
 }
 
-module.exports = {
-  createAnime,
-  getAllAnimes,
-  getAnimeById,
-  deleteAnime
-};

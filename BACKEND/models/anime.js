@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const episodeSchema = require("./episodeSchema"); 
+const Episode = require("../models/episode"); 
 
 
 const animeSchema = new mongoose.Schema({
@@ -10,11 +10,15 @@ const animeSchema = new mongoose.Schema({
   },
   //lili
   description: String,
-  imgUrl: String,
+  imgUrl: {
+    type: String,
+    required: true
+  },
   //fin
   episodes: {
-    type: [episodeSchema],
-    validate: [array => array.length > 0, 'Debe haber al menos un episodio']
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Episode',
+    //validate: [array => array.length > 0, 'Debe haber al menos un episodio']
   },
   uploadedBy: {
     type: mongoose.Schema.Types.ObjectId,
@@ -33,4 +37,5 @@ const animeSchema = new mongoose.Schema({
 // this.imgUrl = `localhost:3000/storage/imgs/${filename}`
 //}
 
-module.exports = mongoose.model('anime', animeSchema);
+const Anime = mongoose.model('anime', animeSchema);
+module.exports = Anime;

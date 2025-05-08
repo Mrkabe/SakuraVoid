@@ -23,10 +23,16 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'anime'
   }],
+  siguiendo: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user'
+  }],
+  
   joined_at: {
     type: Date,
     default: Date.now
   }
 });
 
-module.exports = mongoose.model('user', userSchema);
+const User = mongoose.model('User', userSchema);
+module.exports = User;

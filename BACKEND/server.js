@@ -1,34 +1,18 @@
-/*
 const express = require('express');
-require('./api.js');
-
-const connectToMongo = require('./database/conection'); // <- ruta a tu archivo
-const animeRoutes = require('./routes/animeRoutes');
-const userRoutes = require('./routes/userRoutes');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const path = require('path');
+const conectToMongo = require('./database/conection')
+const router = require('./routes/api');
 
-// Conectar a la base de datos
-connectToMongo();
-
-// Middleware
 app.use(express.json());
 
-// Rutas
-app.use('/api/animes', animeRoutes);
+const port = 3000;
 
-app.use('/api/users', userRoutes);
+app.use('/storage/imgs', express.static(path.join(__dirname, 'libs', 'storage', 'imgs')));
+app.use('/storage/videos', express.static(path.join(__dirname, 'libs', 'storage', 'videos')));
+conectToMongo();
+app.use('/api', router);
 
-/*
-app.listen(PORT, () => {
-  console.log(`Servidor activo en http://localhost:$PORT}`);
-});*/
-
-
-const app = require('./routes/api');
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`✅ Servidor corriendo en http://localhost:${PORT}`);
-});
-
+app.listen(port, () =>{
+    console.log(`SakuraVoid Corriendo en el puerto ${port}!`);
+})
