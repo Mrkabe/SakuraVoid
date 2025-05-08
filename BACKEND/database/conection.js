@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 function connectToMongo() {
-  const uri = process.env.MONGO_URI || 'mongodb+srv://<usuario>:<password>@cluster.mongodb.net/animeDB?retryWrites=true&w=majority';
+  const uri = process.env.MONGO_URI || 'mongodb+srv://admin:6fhB6jpDnDxrOGIy@cluster0.12kdlh1.mongodb.net/';
 
   mongoose.connect(uri, {
     useNewUrlParser: true,

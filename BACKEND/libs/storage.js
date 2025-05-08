@@ -11,8 +11,8 @@ const ensureDir = (dir) => {
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 };
 
-ensureDir(path.join(dirname, "storage", "imgs"));
-ensureDir(path.join(dirname, "storage", "videos"));
+ensureDir(path.join(__dirname, "storage", "imgs"));
+ensureDir(path.join(__dirname, "storage", "videos"));
 
 // Configuración común para ambos
 const generateStorage = (subdir) => multer.diskStorage({
