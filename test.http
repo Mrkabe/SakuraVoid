@@ -5,91 +5,88 @@ Content-Type: application/json
 {
   "name": "Robert",
   "email": "robert@example.com",
+  "password": "c"
+}
+
+### 📌 Crear un usuario
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+  "name": "Lilia",
+  "email": "lili@example.com",
+  "password": "Hola0510"
+}
+
+### INICIAR SESIÓN
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+  "email": "robert@example.com",
   "password": "YaporfavorDorx"
 }
 
-###
-GET http://localhost:3000/home
-### 📌 Obtener todos los usuarios
-GET http://localhost:3000/api/users
 
-###
-
-### 📌 Obtener un usuario por ID (REEMPLAZAR_ID)
-GET http://localhost:3000/api/users/REEMPLAZAR_ID
-
-###
-
-### 📌 Eliminar usuario (REEMPLAZAR_ID)
-DELETE http://localhost:3000/api/users/REEMPLAZAR_ID
-
-###
-
-### 📌 Crear un anime con imagen (requiere imagen local)
+### CREAR ANIME CON IMAGEN Y EPISODIOS
 POST http://localhost:3000/api/animes
-Content-Type: multipart/form-data
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MWQzNWIyOWIxYmI0NWQwMzRiYTY5YSIsImlhdCI6MTc0Njc0NDc3MiwiZXhwIjoxNzQ2NzQ4MzcyfQ.7H2KdgQBa_kSB1nDIOQvK5eqjcLqEUmFqDV0KeqTuBA
+Content-Type: multipart/form-data; boundary=FormBoundary
 
-------WebKitFormBoundary
-Content-Disposition: form-data; name="titulo"
+--FormBoundary
+Content-Disposition: form-data; name="title"
 
-One Piece
-------WebKitFormBoundary
-Content-Disposition: form-data; name="descripcion"
+Naruto
+--FormBoundary
+Content-Disposition: form-data; name="description"
 
-Aventura épica pirata
-------WebKitFormBoundary
-Content-Disposition: form-data; name="avatar_anime"; filename="onepiece.jpg"
-Content-Type: image/jpeg
+Un anime legendario
+--FormBoundary
+Content-Disposition: form-data; name="file"; filename="katyusha 4.png"
+Content-Type: image/png
 
-< ./test-imgs/onepiece.jpg
-------WebKitFormBoundary--
+< D:\imagenes\katyusha 4.png
+--FormBoundary--
 
-###
-
-### 📌 Obtener todos los animes
-GET http://localhost:3000/api/animes
-
-###
-
-### 📌 Obtener anime por ID (REEMPLAZAR_ID)
-GET http://localhost:3000/api/animes/REEMPLAZAR_ID
-
-###
-
-### 📌 Eliminar anime (REEMPLAZAR_ID)
-DELETE http://localhost:3000/api/animes/REEMPLAZAR_ID
-
-###
-
-### 📌 Crear un episodio con video (requiere video local)
+### SUBIR EPISODIO CON VIDEO
 POST http://localhost:3000/api/episodes
-Content-Type: multipart/form-data
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MWQzNWIyOWIxYmI0NWQwMzRiYTY5YSIsImlhdCI6MTc0Njc0NDc3MiwiZXhwIjoxNzQ2NzQ4MzcyfQ.7H2KdgQBa_kSB1nDIOQvK5eqjcLqEUmFqDV0KeqTuBA
+Content-Type: multipart/form-data; boundary=FormBoundary
 
-------WebKitFormBoundary
-Content-Disposition: form-data; name="animeId"
+--FormBoundary
+Content-Disposition: form-data; name="title"
 
-REEMPLAZAR_ID_DEL_ANIME
-------WebKitFormBoundary
-Content-Disposition: form-data; name="titulo"
-
-Episodio 1
-------WebKitFormBoundary
-Content-Disposition: form-data; name="numero"
+Capítulo 1: El inicio
+--FormBoundary
+Content-Disposition: form-data; name="number"
 
 1
-------WebKitFormBoundary
-Content-Disposition: form-data; name="video"; filename="ep1.mp4"
-Content-Type: video/mp4
+--FormBoundary
+Content-Disposition: form-data; name="anime"
 
-< ./test-videos/ep1.mp4
-------WebKitFormBoundary--
+681d3c8158bb04e2835eaaa6
+--FormBoundary
+Content-Disposition: form-data; name="file"; filename="robloxapp-20241123-2124044.wmv"
+Content-Type: video/wmv
 
-###
+< C:\Users\rober\Videos\Roblox\robloxapp-20241123-2124044.wmv
+--FormBoundary--
 
-### 📌 Obtener episodios por ID de anime
-GET http://localhost:3000/api/episodes/anime/REEMPLAZAR_ID_DEL_ANIME
 
-###
+### AGREGAR O QUITAR FAVORITO
+PATCH http://localhost:3000/api/users/favoritos
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MWQzNWIyOWIxYmI0NWQwMzRiYTY5YSIsImlhdCI6MTc0Njc0ODkxNywiZXhwIjoxNzQ2NzUyNTE3fQ.x8axFANqbRLDOYi4F-TW8RiXyPa3mTflKyRoxN3HvkE
+Content-Type: application/json
 
-### 📌 Eliminar episodio por ID
-DELETE http://localhost:3000/api/episodes/REEMPLAZAR_ID_DEL_EPISODIO
+{
+  "animeId": "681d3c8158bb04e2835eaaa6"
+}
+
+### SEGUIR O DEJAR DE SEGUIR UN USUARIO
+PATCH http://localhost:3000/api/users/follow
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MWQzNWIyOWIxYmI0NWQwMzRiYTY5YSIsImlhdCI6MTc0Njc0ODkxNywiZXhwIjoxNzQ2NzUyNTE3fQ.x8axFANqbRLDOYi4F-TW8RiXyPa3mTflKyRoxN3HvkE
+Content-Type: application/json
+
+{
+  "targetUserId": "681d46453e707d8d82f6f4e7"
+}

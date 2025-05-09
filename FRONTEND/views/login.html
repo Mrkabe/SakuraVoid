@@ -61,20 +61,8 @@
         />
         <script src="../controllers/env.js"></script>
         <script src="../controllers/auth_controller.js"></script>
-        <script>
-            function toggleForms() {
-                let formLogin = document.getElementById('formLogin');
-                let formRegister = document.getElementById('formRegister');
 
-                if (formRegister.style.display === 'none') {
-                    formLogin.style.display = 'none';
-                    formRegister.style.display = 'block';
-                } else {
-                    formLogin.style.display = 'block';
-                    formRegister.style.display = 'none';
-                }
-            }
-        </script>
+        
     </head>
     <body>
         <div class="card text-start position-relative shadow p-4" style="width: 300px; border-radius: 20px;">
@@ -124,7 +112,7 @@
                 </form>
 
                 <!-- Formulario de Registro -->
-                <form id="formRegister" onsubmit="register(event)" style="display: none;">
+                <form id="formRegister" action="" style="display: none;">
                     <div class="mb-3">
                         <label for="registerName" class="form-label">Nombre</label>
                         <input
