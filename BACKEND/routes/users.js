@@ -16,7 +16,7 @@ routerUsers.get('/:id', usersController.getUserById);
 
 routerUsers.delete('/:id', requireAuth, usersController.deleteUser);
 //es lo mismo??
-routerUsers.patch('/:id/favoritos', requireAuth, usersController.addFavorite);
+//routerUsers.patch('/:id/favoritos', requireAuth, usersController.addFavorite);
 // Agregar o quitar favorito
 routerUsers.patch('/favoritos', requireAuth, usersController.toggleFavorite);
 

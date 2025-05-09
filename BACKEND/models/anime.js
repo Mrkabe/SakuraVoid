@@ -16,10 +16,14 @@ const animeSchema = new mongoose.Schema({
   },
   //fin
   episodes: {
+  type: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Episode',
-    //validate: [array => array.length > 0, 'Debe haber al menos un episodio']
-  },
+    ref: 'Episode'
+  }],
+  default: [],
+  validate: [arr => Array.isArray(arr), 'Debe ser un arreglo de episodios']
+}
+,
   uploadedBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',

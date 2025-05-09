@@ -3,63 +3,33 @@ const Episode = require('../models/episode');
 const path = require('path');
 
 
-// Crear un anime con episodios
+// Crear un anime 
+
 exports.createAnime = async (req, res) => {
   const { title, description } = req.body;
-  let episodes;
 
-  try {
-    episodes = JSON.parse(req.body.episodes);
-  } catch {
-    return res.status(400).json({ error: 'Formato de episodios inválido' });
-  }
-
-  if (!title || !episodes || !req.file || !req.user) {
+  if (!title || !req.file || !req.user) {
     return res.status(400).json({ error: 'Faltan campos requeridos' });
   }
 
   const imgUrl = `${req.protocol}://${req.get('host')}/storage/imgs/${req.file.filename}`;
 
-  const newAnime = new Anime({
-    title,
-    description,
-    uploadedBy: req.user._id,
-    imgUrl,
-    episodes: []
-  });
-  
-  newAnime.save()
-    .then(savedAnime => {
-      const episodePromises = episodes.map(ep => {
-        const newEp = new Episode({
-          title: ep.title,
-          number: ep.number,
-          anime: savedAnime._id
-        });
-        return newEp.save();
-      });
-
-      Promise.all(episodePromises)
-        .then(createdEpisodes => {
-          const episodeIds = createdEpisodes.map(ep => ep._id);
-          savedAnime.episodes = episodeIds;
-          savedAnime.save()
-            .then(updatedAnime => res.status(201).json(updatedAnime))
-            .catch(err => {
-              console.error(err);
-              res.status(500).json({ error: 'Error al actualizar el anime con episodios' });
-            });
-        })
-        .catch(err => {
-          console.error(err);
-          res.status(500).json({ error: 'Error al crear episodios' });
-        });
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ error: 'Error al guardar el anime' });
+  try {
+    const newAnime = new Anime({
+      title,
+      description,
+      uploadedBy: req.user._id,
+      imgUrl,
+      episodes: [] // Inicialmente vacío
     });
-}
+
+    await newAnime.save();
+    res.status(201).json(newAnime);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error al guardar el anime' });
+  }
+};
 
 // Obtener todos los animes
 exports.getAllAnimes = (req, res) => {

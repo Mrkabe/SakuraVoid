@@ -54,7 +54,7 @@ exports.deleteUser = (req, res) => {
     })
     .catch(err => res.status(500).json({ error: 'Error al eliminar usuario' }));
 }
-//tambien agrega favoritos?
+/*tambien agrega favoritos?
 exports.addFavorite = async (req, res) => {
   const userId = req.params.id;
   const { animeId } = req.body;
@@ -69,7 +69,7 @@ exports.addFavorite = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: 'No se pudo agregar favorito' });
   }
-};
+}; */
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
@@ -92,16 +92,21 @@ exports.toggleFavorite = async (req, res) => {
 
   try {
     const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ error: 'Usuario no encontrado' });
+
     const index = user.favoritos.indexOf(animeId);
 
     if (index > -1) {
-      user.favoritos.splice(index, 1); // eliminar
+      user.favoritos.splice(index, 1); // Quitar de favoritos
     } else {
-      user.favoritos.push(animeId); // agregar
+      user.favoritos.push(animeId); // Agregar a favoritos
     }
 
     await user.save();
-    res.json({ message: 'Favoritos actualizados', favoritos: user.favoritos });
+    res.status(200).json({
+      message: 'Favoritos actualizados',
+      favoritos: user.favoritos
+    });
   } catch (err) {
     res.status(500).json({ error: 'Error al modificar favoritos' });
   }
@@ -110,6 +115,10 @@ exports.toggleFavorite = async (req, res) => {
 exports.toggleFollow = async (req, res) => {
   const userId = req.user._id;
   const { targetUserId } = req.body;
+
+  if (userId.equals(targetUserId)) {
+    return res.status(400).json({ error: "No puedes seguirte a ti mismo" });
+  }
 
   try {
     const user = await User.findById(userId);
@@ -122,7 +131,10 @@ exports.toggleFollow = async (req, res) => {
     }
 
     await user.save();
-    res.json({ message: 'Relación actualizada', siguiendo: user.siguiendo });
+    res.status(200).json({
+      message: "Relación actualizada",
+      siguiendo: user.siguiendo
+    });
   } catch (err) {
     res.status(500).json({ error: 'Error al seguir/dejar de seguir usuario' });
   }

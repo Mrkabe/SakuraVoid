@@ -1,7 +1,8 @@
 // controllers/episodeController.js
 const path = require("path");
 const Episode = require('../models/episode');
-
+const Anime = require('../models/anime');
+/*
 exports.createEpisode = async (req, res) => {
   try {
     const { title, number, anime } = req.body;
@@ -25,6 +26,45 @@ exports.createEpisode = async (req, res) => {
 
     res.status(201).json({ message: "Episodio creado correctamente", episode: newEpisode });
   } catch (error) {
+    res.status(500).json({ message: "Error al crear episodio", error });
+  }
+}; */
+
+exports.createEpisode = async (req, res) => {
+  try {
+    const { title, number, anime } = req.body;
+
+    if (!req.file) {
+      return res.status(400).json({ message: "Debes subir un archivo de video." });
+    }
+
+    const animeDoc = await Anime.findById(anime);
+    if (!animeDoc) return res.status(404).json({ message: "Anime no encontrado" });
+
+    // Validar propiedad
+    if (!animeDoc.uploadedBy.equals(req.user._id)) {
+      return res.status(403).json({ message: "No puedes agregar episodios a un anime que no es tuyo" });
+    }
+
+    const videoUrl = `${req.protocol}://${req.get('host')}/storage/videos/${req.file.filename}`;
+
+    const newEpisode = new Episode({
+      title,
+      number,
+      anime,
+      videoUrl
+    });
+
+    await newEpisode.save();
+
+    // Agregar episodio al anime
+    animeDoc.episodes.push(newEpisode._id);
+    await animeDoc.save();
+
+    res.status(201).json({ message: "Episodio creado correctamente", episode: newEpisode });
+
+  } catch (error) {
+    console.error(error);
     res.status(500).json({ message: "Error al crear episodio", error });
   }
 };
