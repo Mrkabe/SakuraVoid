@@ -39,6 +39,8 @@ function logout() {
   sessionStorage.clear();
   window.location.href = `${local_url}/login.html`;
 }
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("formLogin");
   if (loginForm) loginForm.addEventListener("submit", login);

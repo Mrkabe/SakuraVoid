@@ -44,6 +44,8 @@
       
     
         </style>
+        <script src="../controllers/env.js"></script>
+        <script src="../controllers/auth_controller.js"></script>
     </head>
 
     <body>
@@ -87,17 +89,17 @@
                         </form>
 
                         <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="login.html">
-                                    <i class='fas' title="Iniciar sesión" style="cursor: pointer; font: size 35px; color: white">&#xf007;</i>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user-circle" style="font-size: 22px; color: white;"></i>
                                 </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
-                                    <i class='fas' title="Cerrar sesión" style="cursor: pointer; font: size 35px; color: white">&#xf2f6;</i>
-                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="perfil.html">Ver mi perfil</a></li>
+                                <li><a class="dropdown-item text-danger" href="#" onclick="logout()">Cerrar sesión</a></li>
+                                </ul>
                             </li>
                         </ul>
+
                     </div>
                 </div>
             </nav>
@@ -365,5 +367,16 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+        <script>
+            const user = sessionStorage.getItem('user');
+            const dropdown = document.getElementById('userDropdown');
+
+            if (!user && dropdown) {
+                dropdown.addEventListener('click', () => {
+                window.location.href = "login.html";
+                });
+            }
+        </script>
+
     </body>
 </html>
