@@ -2,8 +2,7 @@ const local_url = "http://localhost:3000";
 
 function validateLogin() {
     const pathname = window.location.pathname;
-    const isProtectedPage = pathname.includes("home.html") ||
-                            pathname.includes("perfil.html") ||
+    const isProtectedPage = pathname.includes("perfil.html") ||
                             pathname.includes("upload.html") ||
                             pathname.includes("favoritos.html");
 
