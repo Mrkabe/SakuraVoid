@@ -90,7 +90,7 @@
     <body>
         <header>
             <!-- place navbar here -->
-            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #070522;">
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #070522;">
                 <div class="container-fluid">
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -127,13 +127,16 @@
                             </button>
                         </form>
                         <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
-                                    <i class='fas' title="Cerrar sesión" style="cursor: pointer; font: size 35px; color: white">&#xf2f6;</i>
-                                    
-                                </a>
-                            </li>
 
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas" style="font-size: 22px; color: white;">&#xf007;</i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="perfil.html">Ver mi perfil</a></li>
+                                <li><a class="dropdown-item text-danger" href="#" onclick="logout()">Cerrar sesión</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -155,10 +158,10 @@
                     </div>
                 </div>
             </div>
-
+                    
         </header>
         
-        <main>
+        <main class="container main" style="margin-top: 150px;">
 
             <div class="container" style="margin: 30px;">
             <!-- Reproductor de video -->
@@ -198,7 +201,7 @@
                 ">
                     <h4 class="card-title" style="font-size: 14px; margin: 0;">Demon Slayer</h4>
                     <p class="card-text" style="font-size: 12px; margin-top: 5px;">Tanjiro Kamado no tiene otra opción más que convertirse en cazador de demonios.</p>
-                    <h1 style="background-color: #7F00B2; color: white; font-size: 12px;">by @Seeling23</h1> <button style=" margin-bottom: 10px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); 
+                    <h1 style="background-color: #7F00B2; color: white; font-size: 12px; text-align: center;">by @Seeling23</h1> <button style=" margin-bottom: 10px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); 
                 color: white; border: none; border-radius: 4px; padding: 6px; cursor: pointer;"><strong>Seguir al usuario</strong></button>
                 </div>
             </div> 
@@ -207,6 +210,15 @@
 
             </div>
 
+            <!-- JavaScript para alternar el estado del ícono -->
+            <script>
+                document.querySelectorAll('.favorite-icon').forEach(icon => {
+                    icon.addEventListener('click', () => {
+                        icon.classList.toggle('fa-regular');
+                        icon.classList.toggle('fa-solid');
+                    });
+                });
+            </script>
 
         </main>
         <footer class="text-center py-4 mt-5 text-white">
@@ -214,7 +226,7 @@
             <div class="contenedor_footer" style="background-color: #1b1a29;">
                 <br><p class="mb-0">© 2025 SakuraVoid - Todos los derechos reservados</p>
                 <img src="../assets/img/logo_b.png" alt="SakuraVoid" style=" width: 150px; height: 70px; margin: 0 auto; padding: 10px; display: flex; justify-content: center; align-items: center;">
-              </div>
+            </div>
         </footer>
         <!-- Bootstrap JavaScript Libraries -->
         <script
@@ -228,6 +240,16 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+                <script>
+            const user = sessionStorage.getItem('user');
+            const dropdown = document.getElementById('userDropdown');
+
+            if (!user && dropdown) {
+                dropdown.addEventListener('click', () => {
+                window.location.href = "login.html";
+                });
+            }
+        </script>
     </body>
 <!-- COmentario prueba -->
 </html>

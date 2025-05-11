@@ -50,12 +50,21 @@
       }
 
       .btn-style {
-        background: linear-gradient(to right, #007bff, #ff69b4);
+        background: #007bff;
         color: white;
       }
 
       .btn-style:hover {
-        background-color: #893bf0;
+        background-color: #005ec3;
+      }
+
+      .btn-subir {
+        background: #ff69b4;
+        color: white;
+      }
+
+      .btn-subir:hover {
+        background-color: #a04070;
       }
 
       .upload-icon {
@@ -88,13 +97,13 @@
       }
 
       .style-card .card-img-top {
-        height: 60%;
+        height: 70%;
         object-fit: cover;
         width: 100%;
       }
 
       .style-card .card-body {
-        height: 40%;
+        height: 30%;
         padding: 10px;
         overflow: hidden;
       }
@@ -123,7 +132,7 @@
 <body>
   <header>
       <!-- NAVBAR -->
-            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #070522;">
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #070522;">
               <div class="container-fluid">
 
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -160,14 +169,17 @@
                         </button>
 
                     </form>
-                      <ul class="navbar-nav">
-                          <li class="nav-item">
-                              <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
-                                  <i class='fas' title="Cerrar sesión" style="cursor: pointer; font: size 35px; color: white">&#xf2f6;</i>
-                                  
-                              </a>
-                          </li>
-                      </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas" style="font-size: 22px; color: white;">&#xf007;</i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="perfil.html">Ver mi perfil</a></li>
+                            <li><a class="dropdown-item text-danger" href="#" onclick="logout()">Cerrar sesión</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                   </div>
               </div>
         <!-- Modal de Cierre-->
@@ -189,6 +201,26 @@
 
               
           </nav>
+
+        <!-- Modal Bootstrap -->
+        <div class="modal fade" id="chapterModal" tabindex="-1" aria-labelledby="chapterModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content" style="background-color: #0d0b2d; color: white;">
+              <div class="modal-header">
+                <h5 class="modal-title" id="chapterModalLabel">Nuevo Capítulo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+              </div>
+              <div class="modal-body" id="modalContent">
+                <!-- Aquí se inyectará el nuevo capítulo con JS -->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
   </header>
   
   <main class="d-flex flex-column align-items-center justify-content-center" style="min-height: 100vh; padding: 2rem;">
@@ -197,7 +229,7 @@
       <div class="upload-icon">
         <i class="fas fa-cloud-upload-alt"></i>
       </div>
-      <h3 class="text-white mb-4">Sube tu anime</h3>  
+      <h3 class="text-white mb-4">Crea tu anime</h3>  
       <!-- Sección para capítulos -->
       <div class="mb-4">
         <div id="capitulos">
@@ -208,13 +240,10 @@
             <form action="/" method="post" enctype="multipart/form-data">
               <input type="file" class="form-control mb-3" name="avatar_anime" />
             </form>
-            
-            <input type="number" class="form-control mb-3" id="numero_capitulo" placeholder="Número del capítulo">
-            <input type="text" class="form-control mb-3" id="nombre_capitulo" placeholder="Título del capítulo">
-            <input type="file" class="form-control mb-3" id="video_capitulo">
           </div>
         </div>
-        <button type="button" class="btn btn-style" onclick="addChapter()">Agregar otro capítulo</button>
+        <button type="button" class="btn btn-subir" onclick="createAnime(this)">Subir</button>
+        <button type="button" class="btn btn-style" onclick="addChapter()">Agregar capítulos</button>
       </div>
     </div>
   
@@ -229,7 +258,6 @@
           <div class="card-body">
             <h6 class="card-title">The evil man</h6>
             <p class="card-text">Anime sobre peleas callejeras y la clandestinidad de Lux.</p>
-            <a href="#" class="btn btn-style btn-sm">ReVerts</a>
           </div>
         </div>
 
@@ -239,7 +267,6 @@
           <div class="card-body">
             <h6 class="card-title">Bob el constructor</h6>
             <p class="card-text">Anime sobre la vida de un ninja después de la época Edo.</p>
-            <a href="#" class="btn btn-style btn-sm">ReVerts</a>
           </div>
         </div>
 
@@ -249,7 +276,6 @@
           <div class="card-body">
             <h6 class="card-title">Nana y la realidad</h6>
             <p class="card-text">Chica que se mete en el mundo de las apuestas.</p>
-            <a href="#" class="btn btn-style btn-sm">ReVerts</a>
           </div>
         </div>
 
@@ -262,24 +288,36 @@
 
   </main>
   
-  
-  <script>
-    function addChapter() {
-      const capitulos = document.getElementById('capitulos');
-      const nuevo_capitulo = document.createElement('div');
 
-      nuevo_capitulo.classList.add('mb-3', 'p-3', 'rounded');
-      nuevo_capitulo.style.backgroundColor = '#0d0b2d';
-      nuevo_capitulo.innerHTML = `
-        <input type="number" class="form-control mb-3" id="numero_capitulo" placeholder="Número del capítulo">
-        <input type="text" class="form-control mb-3" placeholder="Título del capítulo">
-        <input type="file" class="form-control mb-3">
-      `;
-      
-      capitulos.appendChild(nuevo_capitulo);
-    }
-    
-  </script>  
+<script>
+  function addChapter() {
+    const capitulos = document.getElementById('capitulos');
+    const nuevo_capitulo = document.createElement('div');
+
+    nuevo_capitulo.classList.add('mb-3', 'p-3', 'rounded');
+    nuevo_capitulo.style.backgroundColor = '#0d0b2d';
+
+    nuevo_capitulo.innerHTML = `
+      <input type="number" class="form-control mb-3" placeholder="Número del capítulo">
+      <input type="text" class="form-control mb-3" placeholder="Título del capítulo">
+      <input type="file" class="form-control mb-3">
+      <div class="d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-success" onclick="createEpisode(this)">Subir</button>
+        <button type="button" class="btn btn-danger" onclick="eliminarCapitulo(this)">Cancelar este capítulo</button>
+      </div>
+    `;
+
+    capitulos.appendChild(nuevo_capitulo);
+  }
+
+  function eliminarCapitulo(btn) {
+    const capitulo = btn.closest('div.mb-3');
+    capitulo.remove();
+  }
+
+</script>
+
+
 
   <footer class="text-center py-4 mt-5 text-white">
     <div class="contenedor_footer" style="background-color: #1b1a29;">
@@ -301,6 +339,17 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+
+        <script>
+            const user = sessionStorage.getItem('user');
+            const dropdown = document.getElementById('userDropdown');
+
+            if (!user && dropdown) {
+                dropdown.addEventListener('click', () => {
+                window.location.href = "login.html";
+                });
+            }
+        </script>
 
 </body>
 </html>

@@ -41,7 +41,33 @@
                 color: gray !important;
                 opacity: 1 !important;
             }
-      
+
+
+            .anime-card {
+                cursor: pointer;
+                transition: transform 0.2s;
+                font-size: 0.9rem;
+                
+            }
+
+            .anime-card:hover {
+                transform: scale(1.01);
+            }
+
+            .btn-ver {
+                  background: linear-gradient(to right, #007bff, #ff69b4);
+                    color: white;
+                    font-size: 12px;
+                    margin-bottom: 10px; 
+                    color: white; 
+                    border: none; 
+                    border-radius: 4px;
+            }
+
+            .btn-ver:hover {
+                background-color: #893bf0;
+            }
+
     
         </style>
         <script src="../controllers/env.js"></script>
@@ -51,7 +77,7 @@
     <body>
         <header>
             <!-- place navbar here -->
-            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #070522;">
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #070522;">
                 <div class="container-fluid">
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -91,7 +117,7 @@
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user-circle" style="font-size: 22px; color: white;"></i>
+                                <i class="fas" style="font-size: 22px; color: white;">&#xf007;</i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                                 <li><a class="dropdown-item" href="perfil.html">Ver mi perfil</a></li>
@@ -104,7 +130,7 @@
                 </div>
             </nav>
 
-        <!-- Modal de Cierre-->
+            <!-- Modal de Cierre-->
             <div class="modal fade" id="logoutModal" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -123,7 +149,7 @@
             
         </header>
         
-        <main>
+        <main class="container main" style="margin-top: 150px;">
 
 
             <!-- Contenedor del carousel e info para centrarlos -->
@@ -150,7 +176,7 @@
                                     <p style="font-size: 12px;">El despertar del cazador más débil del mundo comienza aquí.</p>
                                     <p style="font-size: 12px;"><em>by: <strong>@jinwoo</strong></em></p>
                                     <a href="anime.html" title="MiAnime">
-                                        <button style="padding: 6px 12px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px;"><strong>Empezar anime</strong></button>
+                                        <button type="button" class="btn btn-ver"><strong>Empezar anime</strong></button>
                                     </a>
                                 </div>
                             </div>
@@ -166,7 +192,7 @@
                                     <p style="font-size: 12px;">Descubre la magia de las cartas Clow con Sakura y sus amigos.</p>
                                     <p style="font-size: 12px;"><em>by: <strong>@sakura_kinomoto</strong></em></p>
                                     <a href="anime.html" title="MiAnime">
-                                        <button style="padding: 6px 12px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px;"><strong>Empezar anime</strong></button>
+                                        <button type="button" class="btn btn-ver"><strong>Empezar anime</strong></button>
                                     </a>
                                 </div>
                             </div>
@@ -182,7 +208,7 @@
                                     <p style="font-size: 12px;">Unete a Luffy en su aventura para convertirse en el Rey de los Piratas.</p>
                                     <p style="font-size: 12px;"><em>by: <strong>@mugiwara</strong></em></p>
                                     <a href="anime.html" title="MiAnime">
-                                        <button style="padding: 6px 12px; font-size: 12px;  background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px;"><strong>Empezar anime</strong></button>
+                                        <button type="button" class="btn btn-ver"><strong>Empezar anime</strong></button>
                                     </a>
                                 </div>
                             </div>
@@ -213,120 +239,112 @@
 
 
                     <!-- Card individual -->
-                    <div class="card" style="width: 200px; height: 350px; display: flex; flex-direction: column; color: white; background-color: #251479;">
+                    <div class="anime-card">
+                        <div class="card" style="width: 200px; height: 350px; display: flex; flex-direction: column; color: white; background-color: #251479;">
 
-                         <!-- icono fav -->
-                        <i class="fa-regular fa-heart favorite-icon" title="Marcar como favorito" 
-                        style="position: absolute; top: 10px; right: 10px; color: white; font-size: 20px; cursor: pointer;"></i>
+                            <!-- icono fav -->
+                            <i class="fa-regular fa-heart favorite-icon" title="Marcar como favorito" 
+                            style="position: absolute; top: 10px; right: 10px; color: white; font-size: 20px; cursor: pointer;"></i>
 
-                        <img class="card-img-top" src="https://media.gq.com.mx/photos/66b3e2ab1eb4176c241add84/16:9/w_2240,c_limit/Mejores_series_de_anime.jpg"
-                            alt="Card image"
-                            style="height: 60%; object-fit: cover;">
-                        <div class="card-body" style="height: 40%; overflow: hidden;">
-                            <h4 class="card-title" style="font-size: 14px;">Demon Slayer</h4>
-                            <p class="card-text" style="font-size: 12px;">Tanjiro Kamado no tiene otra opción más que convertirse en cazador de demonios.</p>
-                            <a href="perfil.html" style="background-color: #7F00B2; color: white; font-size: 12px;">by @Seeling23</a>
-                            <a href="anime.html" title="MiAnime">
-                                <button style="margin-left: 50px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px;"><strong>Ver</strong></button>
-                            </a>
+                            <img class="card-img-top" src="https://media.gq.com.mx/photos/66b3e2ab1eb4176c241add84/16:9/w_2240,c_limit/Mejores_series_de_anime.jpg"
+                                alt="Card image"
+                                style="height: 60%; object-fit: cover;">
+                            <div class="card-body" style="height: 40%; overflow: hidden;">
+                                <h4 class="card-title" style="font-size: 14px;">Demon Slayer</h4>
+                                <p class="card-text" style="font-size: 12px;">Tanjiro Kamado no tiene otra opción más que convertirse en cazador de demonios.</p>
+                                <a href="perfil.html" style="background-color: #7F00B2; color: white; font-size: 12px; margin-right: 40px;">by @Seeling23</a>
+                                <a href="anime.html" title="MiAnime">
+                                    <button class="btn btn-ver"><strong>Ver</strong></button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Card individual -->
+                    <div class="anime-card">
+                        <div class="card" style="width: 200px; height: 350px; display: flex; flex-direction: column; color: white; background-color: #251479;">
+
+                            <!-- icono fav -->
+                            <i class="fa-regular fa-heart favorite-icon" title="Marcar como favorito" 
+                            style="position: absolute; top: 10px; right: 10px; color: white; font-size: 20px; cursor: pointer;"></i>
+
+                            <img class="card-img-top" src="https://media.gq.com.mx/photos/66b3e2ab1eb4176c241add84/16:9/w_2240,c_limit/Mejores_series_de_anime.jpg"
+                                alt="Card image"
+                                style="height: 60%; object-fit: cover;">
+                            <div class="card-body" style="height: 40%; overflow: hidden;">
+                                <h4 class="card-title" style="font-size: 14px;">Demon Slayer</h4>
+                                <p class="card-text" style="font-size: 12px;">Tanjiro Kamado no tiene otra opción más que convertirse en cazador de demonios.</p>
+                                <a href="perfil.html" style="background-color: #7F00B2; color: white; font-size: 12px;">by @Seeling23</a>
+                                <a href="anime.html" title="MiAnime">
+                                    <button style="margin-left: 50px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px;"><strong>Ver</strong></button>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Card individual -->
-                    <div class="card" style="width: 200px; height: 350px; display: flex; flex-direction: column; color: white; background-color: #251479;">
+                    <div class="anime-card">
+                        <div class="card" style="width: 200px; height: 350px; display: flex; flex-direction: column; color: white; background-color: #251479;">
 
-                         <!-- icono fav -->
-                        <i class="fa-regular fa-heart favorite-icon" title="Marcar como favorito" 
-                        style="position: absolute; top: 10px; right: 10px; color: white; font-size: 20px; cursor: pointer;"></i>
+                            <!-- icono fav -->
+                            <i class="fa-regular fa-heart favorite-icon" title="Marcar como favorito" 
+                            style="position: absolute; top: 10px; right: 10px; color: white; font-size: 20px; cursor: pointer;"></i>
 
-                        <img class="card-img-top" src="https://media.gq.com.mx/photos/66b3e2ab1eb4176c241add84/16:9/w_2240,c_limit/Mejores_series_de_anime.jpg"
-                            alt="Card image"
-                            style="height: 60%; object-fit: cover;">
-                        <div class="card-body" style="height: 40%; overflow: hidden;">
-                            <h4 class="card-title" style="font-size: 14px;">Demon Slayer</h4>
-                            <p class="card-text" style="font-size: 12px;">Tanjiro Kamado no tiene otra opción más que convertirse en cazador de demonios.</p>
-                            <a href="perfil.html" style="background-color: #7F00B2; color: white; font-size: 12px;">by @Seeling23</a>
-                            <a href="anime.html" title="MiAnime">
-                                <button style="margin-left: 50px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px;"><strong>Ver</strong></button>
-                            </a>
+                            <img class="card-img-top" src="https://media.gq.com.mx/photos/66b3e2ab1eb4176c241add84/16:9/w_2240,c_limit/Mejores_series_de_anime.jpg"
+                                alt="Card image"
+                                style="height: 60%; object-fit: cover;">
+                            <div class="card-body" style="height: 40%; overflow: hidden;">
+                                <h4 class="card-title" style="font-size: 14px;">Demon Slayer</h4>
+                                <p class="card-text" style="font-size: 12px;">Tanjiro Kamado no tiene otra opción más que convertirse en cazador de demonios.</p>
+                                <a href="perfil.html" style="background-color: #7F00B2; color: white; font-size: 12px;">by @Seeling23</a>
+                                <a href="anime.html" title="MiAnime">
+                                    <button style="margin-left: 50px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px;"><strong>Ver</strong></button>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Card individual -->
-                    <div class="card" style="width: 200px; height: 350px; display: flex; flex-direction: column; color: white; background-color: #251479;">
+                    <div class="anime-card">
+                        <div class="card" style="width: 200px; height: 350px; display: flex; flex-direction: column; color: white; background-color: #251479;">
+                            
+                            <!-- icono fav -->
+                            <i class="fa-regular fa-heart favorite-icon" title="Marcar como favorito" 
+                            style="position: absolute; top: 10px; right: 10px; color: white; font-size: 20px; cursor: pointer;"></i>
 
-                         <!-- icono fav -->
-                         <i class="fa-regular fa-heart favorite-icon" title="Marcar como favorito" 
-                         style="position: absolute; top: 10px; right: 10px; color: white; font-size: 20px; cursor: pointer;"></i>
-
-                        <img class="card-img-top" src="https://media.gq.com.mx/photos/66b3e2ab1eb4176c241add84/16:9/w_2240,c_limit/Mejores_series_de_anime.jpg"
-                            alt="Card image"
-                            style="height: 60%; object-fit: cover;">
-                        <div class="card-body" style="height: 40%; overflow: hidden;">
-                            <h4 class="card-title" style="font-size: 14px;">Demon Slayer</h4>
-                            <p class="card-text" style="font-size: 12px;">Tanjiro Kamado no tiene otra opción más que convertirse en cazador de demonios.</p>
-                            <a href="perfil.html" style="background-color: #7F00B2; color: white; font-size: 12px;">by @Seeling23</a>
-                            <a href="anime.html" title="MiAnime">
-                                <button style="margin-left: 50px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px;"><strong>Ver</strong></button>
-                            </a>
+                            <img class="card-img-top" src="https://media.gq.com.mx/photos/66b3e2ab1eb4176c241add84/16:9/w_2240,c_limit/Mejores_series_de_anime.jpg"
+                                alt="Card image"
+                                style="height: 60%; object-fit: cover;">
+                            <div class="card-body" style="height: 40%; overflow: hidden;">
+                                <h4 class="card-title" style="font-size: 14px;">Demon Slayer</h4>
+                                <p class="card-text" style="font-size: 12px;">Tanjiro Kamado no tiene otra opción más que convertirse en cazador de demonios.</p>
+                                <a href="perfil.html" style="background-color: #7F00B2; color: white; font-size: 12px;">by @Seeling23</a>
+                                <a href="anime.html" title="MiAnime">
+                                    <button style="margin-left: 50px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px;"><strong>Ver</strong></button>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Card individual -->
-                    <div class="card" style="width: 200px; height: 350px; display: flex; flex-direction: column; color: white; background-color: #251479;">
-                        
-                        <!-- icono fav -->
-                         <i class="fa-regular fa-heart favorite-icon" title="Marcar como favorito" 
-                         style="position: absolute; top: 10px; right: 10px; color: white; font-size: 20px; cursor: pointer;"></i>
+                    <div class="anime-card">
+                        <div class="card" style="width: 200px; height: 350px; display: flex; flex-direction: column; color: white; background-color: #251479;">
+                            <!-- icono fav -->
+                            <i class="fa-regular fa-heart favorite-icon" title="Marcar como favorito" 
+                            style="position: absolute; top: 10px; right: 10px; color: white; font-size: 20px; cursor: pointer;"></i>
 
-                        <img class="card-img-top" src="https://media.gq.com.mx/photos/66b3e2ab1eb4176c241add84/16:9/w_2240,c_limit/Mejores_series_de_anime.jpg"
-                            alt="Card image"
-                            style="height: 60%; object-fit: cover;">
-                        <div class="card-body" style="height: 40%; overflow: hidden;">
-                            <h4 class="card-title" style="font-size: 14px;">Demon Slayer</h4>
-                            <p class="card-text" style="font-size: 12px;">Tanjiro Kamado no tiene otra opción más que convertirse en cazador de demonios.</p>
-                            <a href="perfil.html" style="background-color: #7F00B2; color: white; font-size: 12px;">by @Seeling23</a>
-                            <a href="anime.html" title="MiAnime">
-                                <button style="margin-left: 50px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px;"><strong>Ver</strong></button>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Card individual -->
-                    <div class="card" style="width: 200px; height: 350px; display: flex; flex-direction: column; color: white; background-color: #251479;">
-                        <!-- icono fav -->
-                         <i class="fa-regular fa-heart favorite-icon" title="Marcar como favorito" 
-                         style="position: absolute; top: 10px; right: 10px; color: white; font-size: 20px; cursor: pointer;"></i>
-
-                        <img class="card-img-top" src="https://media.gq.com.mx/photos/66b3e2ab1eb4176c241add84/16:9/w_2240,c_limit/Mejores_series_de_anime.jpg"
-                            alt="Card image"
-                            style="height: 60%; object-fit: cover;">
-                        <div class="card-body" style="height: 40%; overflow: hidden;">
-                            <h4 class="card-title" style="font-size: 14px;">Demon Slayer</h4>
-                            <p class="card-text" style="font-size: 12px;">Tanjiro Kamado no tiene otra opción más que convertirse en cazador de demonios.</p>
-                            <a href="perfil.html" style="background-color: #7F00B2; color: white; font-size: 12px;">by @Seeling23</a>
-                            <a href="anime.html" title="MiAnime">
-                                <button style="margin-left: 50px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px;"><strong>Ver</strong></button>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Card individual -->
-                    <div class="card" style="width: 200px; height: 350px; display: flex; flex-direction: column; color: white; background-color: #251479;">
-                        <!-- icono fav -->
-                         <i class="fa-regular fa-heart favorite-icon" title="Marcar como favorito" 
-                         style="position: absolute; top: 10px; right: 10px; color: white; font-size: 20px; cursor: pointer;"></i>
-
-                        <img class="card-img-top" src="https://media.gq.com.mx/photos/66b3e2ab1eb4176c241add84/16:9/w_2240,c_limit/Mejores_series_de_anime.jpg"
-                            alt="Card image"
-                            style="height: 60%; object-fit: cover;">
-                        <div class="card-body" style="height: 40%; overflow: hidden;">
-                            <h4 class="card-title" style="font-size: 14px;">Demon Slayer</h4>
-                            <p class="card-text" style="font-size: 12px;">Tanjiro Kamado no tiene otra opción más que convertirse en cazador de demonios.</p>
-                            <a href="#" style="background-color: #7F00B2; color: white; font-size: 12px;">by @Seeling23</a>
-                            <a href="anime.html" title="MiAnime">
-                                <button style="margin-left: 50px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px;"><strong>Ver</strong></button>
-                            </a>
+                            <img class="card-img-top" src="https://media.gq.com.mx/photos/66b3e2ab1eb4176c241add84/16:9/w_2240,c_limit/Mejores_series_de_anime.jpg"
+                                alt="Card image"
+                                style="height: 60%; object-fit: cover;">
+                            <div class="card-body" style="height: 40%; overflow: hidden;">
+                                <h4 class="card-title" style="font-size: 14px;">Demon Slayer</h4>
+                                <p class="card-text" style="font-size: 12px;">Tanjiro Kamado no tiene otra opción más que convertirse en cazador de demonios.</p>
+                                <a href="#" style="background-color: #7F00B2; color: white; font-size: 12px;">by @Seeling23</a>
+                                <a href="anime.html" title="MiAnime">
+                                    <button style="margin-left: 50px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px;"><strong>Ver</strong></button>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
