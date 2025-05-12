@@ -76,6 +76,9 @@
     </head>
 
     <body>
+    <div id="loader-container" style="position: fixed; top:0; left:0; width:100vw; height:100vh; background:black; z-index:9999; display:flex; justify-content:center; align-items:center;">
+    <canvas id="dotlottie-canvas" style="width: 300px; height:300px;"></canvas>
+    </div>
         <header>
             <!-- place navbar here -->
             <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #070522;">
@@ -398,5 +401,22 @@
             }
         </script>
 
+        <script type="module">
+        import { DotLottie } from "https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web/+esm";
+
+        // Inicia animación
+        new DotLottie({
+        autoplay: true,
+        loop: true,
+        canvas: document.getElementById("dotlottie-canvas"),
+        src: '../assets/img/gato.json'
+        });
+
+        // Oculta el loader tras X segundos
+        setTimeout(() => {
+        const loader = document.getElementById("loader-container");
+        if (loader) loader.style.display = "none";
+        }, 200); // ← Ajusta aquí la duración (en milisegundos)
+        </script>
     </body>
 </html>
