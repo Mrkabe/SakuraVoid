@@ -8,7 +8,7 @@ const animeSchema = new mongoose.Schema({
     required: [true, 'El título del anime es obligatorio'],
     trim: true
   },
-  //lili
+ 
   description: String,
   imgUrl: {
     type: String,

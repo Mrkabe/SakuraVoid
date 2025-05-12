@@ -35,7 +35,7 @@ exports.getUserById = (req, res) => {
   const id = req.params.id;
 
   User.findById(id)
-    .populate('favoritos', 'title episodes')
+    .populate('favoritos')  
     .then(user => {
       if (!user) return res.status(404).json({ error: 'Usuario no encontrado' });
       res.json(user);

@@ -85,6 +85,9 @@
             
     
         </style>
+        <script src="../controllers/env.js"></script>
+        <script src="../controllers/auth_controller.js"></script>
+        <script src="../controllers/anime_view_controller.js"></script>
     </head>
 
     <body>
@@ -166,59 +169,25 @@
             <div class="container" style="margin: 30px;">
             <!-- Reproductor de video -->
                 <div class="video-section">
-                    <video id="anime-video" controls>
-                    <source src="ruta_del_video.mp4" type="video/mp4">
-                    Tu navegador no soporta el video HTML5.
-                    </video>
+                    <video id="videoPlayer" controls class="w-100 my-3" style="max-height: 400px;"></video>
+
                 </div>
                 
             <!-- Lista de capítulos -->
-                <div class="chapter-list" id="chapter-list">
-                    <div class="titulo">Demon Slayer:</div>
-                    <div class="chapter">Capítulo 1</div>
-                    <div class="chapter">Capítulo 2</div>
-                    <div class="chapter">Capítulo 3</div>
+                <div class="chapter-list">
+                <ul id="episodeList" class="list-group list-group-flush"></ul>
                 </div>
+
+
 
             <!-- Card individual -->
-            <div class="card" style="width: 200px; height: 400px; display: flex; flex-direction: column; color: white; background-color: #251479; margin-left: 50px; position: relative;">
-
-                <!-- icono fav -->
-                <i class="fa-solid fa-heart favorite-icon" title="Marcar como favorito" 
-                    style="position: absolute; top: 10px; right: 10px; color: white; font-size: 20px; cursor: pointer;"></i>
-
-                <img class="card-img-top" src="https://media.gq.com.mx/photos/66b3e2ab1eb4176c241add84/16:9/w_2240,c_limit/Mejores_series_de_anime.jpg"
-                    alt="Card image"
-                    style="height: 60%; object-fit: cover;">
-
-                    <div class="card-body" style="
-                    display: flex;
-                    flex-direction: column;
-                    flex-grow: 1;
-                    padding: 10px;
-                    font-size: 12px;
-                    justify-content: space-between;
-                ">
-                    <h4 class="card-title" style="font-size: 14px; margin: 0;">Demon Slayer</h4>
-                    <p class="card-text" style="font-size: 12px; margin-top: 5px;">Tanjiro Kamado no tiene otra opción más que convertirse en cazador de demonios.</p>
-                    <h1 style="background-color: #7F00B2; color: white; font-size: 12px; text-align: center;">by @Seeling23</h1> <button style=" margin-bottom: 10px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); 
-                color: white; border: none; border-radius: 4px; padding: 6px; cursor: pointer;"><strong>Seguir al usuario</strong></button>
-                </div>
-            </div> 
-
-
+           <!-- Contenedor de información del anime -->
+            <div class="card" id="animeViewContainer" style="width: 200px; height: 400px; display: flex; flex-direction: column; color: white; background-color: #251479; margin-left: 50px; position: relative;">
+                <!-- Aquí se llenará con JS -->
 
             </div>
 
             <!-- JavaScript para alternar el estado del ícono -->
-            <script>
-                document.querySelectorAll('.favorite-icon').forEach(icon => {
-                    icon.addEventListener('click', () => {
-                        icon.classList.toggle('fa-regular');
-                        icon.classList.toggle('fa-solid');
-                    });
-                });
-            </script>
 
         </main>
         <footer class="text-center py-4 mt-5 text-white">
@@ -240,16 +209,7 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
-                <script>
-            const user = sessionStorage.getItem('user');
-            const dropdown = document.getElementById('userDropdown');
 
-            if (!user && dropdown) {
-                dropdown.addEventListener('click', () => {
-                window.location.href = "login.html";
-                });
-            }
-        </script>
     </body>
 <!-- COmentario prueba -->
 </html>

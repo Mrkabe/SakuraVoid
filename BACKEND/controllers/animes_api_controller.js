@@ -34,14 +34,16 @@ exports.createAnime = async (req, res) => {
 // Obtener todos los animes
 exports.getAllAnimes = (req, res) => {
   Anime.find()
-    .populate('uploadedBy', 'name email')
+    .populate('uploadedBy', 'name email') // ← podría estar fallando aquí
     .populate('episodes')
     .then(animes => res.json(animes))
     .catch(err => {
-      console.error(err);
+      console.error("Error al obtener animes:", err); // 👈 IMPORTANTE para ver el error real
       res.status(500).json({ error: 'Error al obtener animes' });
     });
-}
+};
+
+
 
 // Obtener un anime por ID
 exports.getAnimeById = (req, res) => {

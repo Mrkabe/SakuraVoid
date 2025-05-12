@@ -128,6 +128,9 @@
         opacity: 1 !important;
       }
     </style>
+    <script src="../controllers/env.js"></script>
+    <script src="../controllers/auth_controller.js"></script>
+    <script src="../controllers/anime_controller.js"></script>
 </head>
 <body>
   <header>
@@ -250,9 +253,9 @@
   <!-- Tarjetas de animes -->
     <div class="container my-5">
       <h5 class="text-white mb-3">Tus animes en la plataforma:</h5>
-      <div class="d-flex flex-wrap gap-4 justify-content-start align-items-start" style="max-width: 1400px; margin: 0 auto;">
+      <div class="d-flex flex-wrap gap-4 justify-content-start align-items-start" style="max-width: 1400px; margin: 0 auto;" id="myUploadedAnimeContainer">
 
-        <!-- Card individual -->
+        <!-- Card individual 
         <div class="style-card">
           <img class="card-img-top" src="https://i.blogs.es/9dc9a1/devil-may-cry-poster/650_1200.jpeg" alt="...">
           <div class="card-body">
@@ -261,7 +264,7 @@
           </div>
         </div>
 
-        <!-- Card individual -->
+       
         <div class="style-card">
           <img class="card-img-top" src="https://preview.redd.it/a1bsfelzww831.png?auto=webp&s=4e0be8ea6f166e78e09aca7520ea978ca7548c84" alt="...">
           <div class="card-body">
@@ -270,16 +273,18 @@
           </div>
         </div>
 
-        <!-- Card individual -->
         <div class="style-card">
           <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRevodaZ8FRHGzy6KUXgMnqWhrAz5ICXBomrA&s" alt="...">
           <div class="card-body">
             <h6 class="card-title">Nana y la realidad</h6>
             <p class="card-text">Chica que se mete en el mundo de las apuestas.</p>
           </div>
+          
+        
         </div>
-
-      </div>
+              
+        Card individual -->
+      </div> 
     </div>
     </div>
 
