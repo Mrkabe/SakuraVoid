@@ -49,8 +49,8 @@ Content-Type: image/png
 --FormBoundary--
 
 ### SUBIR EPISODIO CON VIDEO
-POST http://localhost:3000/api/episodes
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MWQzNWIyOWIxYmI0NWQwMzRiYTY5YSIsImlhdCI6MTc0Njc0NDc3MiwiZXhwIjoxNzQ2NzQ4MzcyfQ.7H2KdgQBa_kSB1nDIOQvK5eqjcLqEUmFqDV0KeqTuBA
+POST http://localhost:3000/episodes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MWQ3Yzk3YjhlNzU3MjAzMGQ3YTZkNCIsImlhdCI6MTc0NzEwMTc0OCwiZXhwIjoxNzQ3MTA1MzQ4fQ.7ix9woJTnTFskSZc87pduZfx1CJDv94DOPv34NEImP4
 Content-Type: multipart/form-data; boundary=FormBoundary
 
 --FormBoundary
@@ -64,12 +64,12 @@ Content-Disposition: form-data; name="number"
 --FormBoundary
 Content-Disposition: form-data; name="anime"
 
-681d3c8158bb04e2835eaaa6
+682281d68ec50b91f2008653
 --FormBoundary
-Content-Disposition: form-data; name="file"; filename="robloxapp-20241123-2124044.wmv"
-Content-Type: video/wmv
+Content-Disposition: form-data; name="file"; filename="Episodio 1.mp4"
+Content-Type: video/mp4
 
-< C:\Users\rober\Videos\Roblox\robloxapp-20241123-2124044.wmv
+< C:\Users\rober\Downloads\Episodio 1.mp4
 --FormBoundary--
 
 

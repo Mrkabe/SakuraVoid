@@ -2,10 +2,16 @@
 const path = require("path");
 const Episode = require('../models/episode');
 const Anime = require('../models/anime');
-/*
+
 exports.createEpisode = async (req, res) => {
   try {
     const { title, number, anime } = req.body;
+
+    //depurar 
+    console.log("title:", title);
+    console.log("number:", number);
+    console.log("anime:", anime);
+
 
     if (!req.file) {
       return res.status(400).json({ message: "Debes subir un archivo de video." });
@@ -13,38 +19,13 @@ exports.createEpisode = async (req, res) => {
 
     const animeDoc = await Anime.findById(anime);
     if (!animeDoc) return res.status(404).json({ message: "Anime no encontrado" });
+    //depuracion errores
+    console.log("animeDoc.uploadedBy:", animeDoc.uploadedBy);
+    console.log("req.user:", req.user);
 
-    // 🔒 Validar propiedad
-    if (!animeDoc.uploadedBy.equals(req.user._id)) {
+    if (!animeDoc.uploadedBy || !req.user || !animeDoc.uploadedBy.equals(req.user._id)) {
       return res.status(403).json({ message: "No puedes agregar episodios a un anime que no es tuyo" });
-    }
-
-    const videoUrl = `${req.protocol}://${req.get('host')}/storage/videos/${req.file.filename}`;
-
-    const newEpisode = new Episode({ title, number, anime, videoUrl });
-    await newEpisode.save();
-
-    res.status(201).json({ message: "Episodio creado correctamente", episode: newEpisode });
-  } catch (error) {
-    res.status(500).json({ message: "Error al crear episodio", error });
-  }
-}; */
-
-exports.createEpisode = async (req, res) => {
-  try {
-    const { title, number, anime } = req.body;
-
-    if (!req.file) {
-      return res.status(400).json({ message: "Debes subir un archivo de video." });
-    }
-
-    const animeDoc = await Anime.findById(anime);
-    if (!animeDoc) return res.status(404).json({ message: "Anime no encontrado" });
-
-    // Validar propiedad
-    if (!animeDoc.uploadedBy.equals(req.user._id)) {
-      return res.status(403).json({ message: "No puedes agregar episodios a un anime que no es tuyo" });
-    }
+   }
 
     const videoUrl = `${req.protocol}://${req.get('host')}/storage/videos/${req.file.filename}`;
 

@@ -131,6 +131,7 @@
     <script src="../controllers/env.js"></script>
     <script src="../controllers/auth_controller.js"></script>
     <script src="../controllers/anime_controller.js"></script>
+    <script src="../controllers/upload_controller.js"></script>
 </head>
 <body>
   <header>
@@ -239,10 +240,10 @@
           <div class="mb-3 p-3 rounded" style="color: white;">
             <input type="text" class="form-control mb-3" id="nombre_anime" placeholder="Título del Anime">
             <input type="text" class="form-control mb-3" id="descripcion_anime" placeholder="Descripción del anime">
-            
+            <!--
             <form action="/" method="post" enctype="multipart/form-data">
               <input type="file" class="form-control mb-3" name="avatar_anime" />
-            </form>
+            </form> -->
           </div>
         </div>
         <button type="button" class="btn btn-subir" onclick="createAnime(this)">Subir</button>
@@ -255,35 +256,7 @@
       <h5 class="text-white mb-3">Tus animes en la plataforma:</h5>
       <div class="d-flex flex-wrap gap-4 justify-content-start align-items-start" style="max-width: 1400px; margin: 0 auto;" id="myUploadedAnimeContainer">
 
-        <!-- Card individual 
-        <div class="style-card">
-          <img class="card-img-top" src="https://i.blogs.es/9dc9a1/devil-may-cry-poster/650_1200.jpeg" alt="...">
-          <div class="card-body">
-            <h6 class="card-title">The evil man</h6>
-            <p class="card-text">Anime sobre peleas callejeras y la clandestinidad de Lux.</p>
-          </div>
-        </div>
-
-       
-        <div class="style-card">
-          <img class="card-img-top" src="https://preview.redd.it/a1bsfelzww831.png?auto=webp&s=4e0be8ea6f166e78e09aca7520ea978ca7548c84" alt="...">
-          <div class="card-body">
-            <h6 class="card-title">Bob el constructor</h6>
-            <p class="card-text">Anime sobre la vida de un ninja después de la época Edo.</p>
-          </div>
-        </div>
-
-        <div class="style-card">
-          <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRevodaZ8FRHGzy6KUXgMnqWhrAz5ICXBomrA&s" alt="...">
-          <div class="card-body">
-            <h6 class="card-title">Nana y la realidad</h6>
-            <p class="card-text">Chica que se mete en el mundo de las apuestas.</p>
-          </div>
-          
-        
-        </div>
-              
-        Card individual -->
+ 
       </div> 
     </div>
     </div>
@@ -294,33 +267,6 @@
   </main>
   
 
-<script>
-  function addChapter() {
-    const capitulos = document.getElementById('capitulos');
-    const nuevo_capitulo = document.createElement('div');
-
-    nuevo_capitulo.classList.add('mb-3', 'p-3', 'rounded');
-    nuevo_capitulo.style.backgroundColor = '#0d0b2d';
-
-    nuevo_capitulo.innerHTML = `
-      <input type="number" class="form-control mb-3" placeholder="Número del capítulo">
-      <input type="text" class="form-control mb-3" placeholder="Título del capítulo">
-      <input type="file" class="form-control mb-3">
-      <div class="d-flex justify-content-end gap-2">
-        <button type="button" class="btn btn-success" onclick="createEpisode(this)">Subir</button>
-        <button type="button" class="btn btn-danger" onclick="eliminarCapitulo(this)">Cancelar este capítulo</button>
-      </div>
-    `;
-
-    capitulos.appendChild(nuevo_capitulo);
-  }
-
-  function eliminarCapitulo(btn) {
-    const capitulo = btn.closest('div.mb-3');
-    capitulo.remove();
-  }
-
-</script>
 
 
 

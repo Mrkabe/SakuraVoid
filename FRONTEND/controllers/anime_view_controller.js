@@ -1,11 +1,22 @@
 // FRONTEND/controllers/anime_view_controller.js
 
-const animeId = new URLSearchParams(window.location.search).get("id");
-const animeViewContainer = document.getElementById("animeViewContainer");
-const episodeList = document.getElementById("episodeList");
-const videoPlayer = document.getElementById("videoPlayer");
+
+window.addEventListener("DOMContentLoaded", loadAnime);
 
 async function loadAnime() {
+  const animeId = new URLSearchParams(window.location.search).get("id");
+  const animeViewContainer = document.getElementById("animeViewContainer");
+  const episodeList = document.getElementById("episodeList");
+  const videoPlayer = document.getElementById("videoPlayer");
+
+  console.log("✅ loadAnime se está ejecutando");
+  console.log("📦 animeId extraído:", animeId);
+  console.log("🧱 Elementos del DOM:", {
+    animeViewContainer,
+    episodeList,
+    videoPlayer
+  });
+
   if (!animeId || !animeViewContainer) return;
 
   try {
@@ -13,55 +24,54 @@ async function loadAnime() {
     if (!res.ok) throw new Error("Anime no encontrado");
     const anime = await res.json();
 
-    renderAnimeDetails(anime);
-    loadEpisodes(anime._id);
+    renderAnimeDetails(anime, animeViewContainer);
+    loadEpisodes(anime._id, videoPlayer, episodeList);
   } catch (err) {
     console.error("Error al cargar anime:", err);
     animeViewContainer.innerHTML = "<p style='color: white;'>No se pudo cargar el anime.</p>";
   }
 }
 
-function renderAnimeDetails(anime) {
-  animeViewContainer.innerHTML = `
-    <div class="card bg-dark text-white">
-      <img src="${anime.imgUrl}" class="card-img-top" alt="${anime.title}" style="object-fit: cover; max-height: 300px;">
-      <div class="card-body">
-        <h3 class="card-title">${anime.title}</h3>
-        <p class="card-text">${anime.description || ''}</p>
-        <p class="card-text"><small class="text-muted">by ${anime.uploadedBy?.name || 'Anon'}</small></p>
-      </div>
+function renderAnimeDetails(anime, container) {
+  if (!container) return;
+
+  container.innerHTML = `
+    <img class="card-img-top" src="${anime.imgUrl}" alt="${anime.title}" style="height: 60%; object-fit: cover;">
+    <div class="card-body" style="display: flex; flex-direction: column; flex-grow: 1; padding: 10px; font-size: 12px; justify-content: space-between;">
+      <h4 class="card-title" style="font-size: 14px; margin: 0;">${anime.title}</h4>
+      <p class="card-text" style="font-size: 12px; margin-top: 5px;">${anime.description || ''}</p>
+      <h1 style="background-color: #7F00B2; color: white; font-size: 12px; text-align: center;">by @${anime.uploadedBy?.name || 'Anon'}</h1>
+      <a href="perfil.html"><button style="margin-bottom: 10px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px; padding: 6px; cursor: pointer;"><strong>Seguir al usuario</strong></button></a>
     </div>
   `;
 }
 
-async function loadEpisodes(animeId) {
-  if (!episodeList) return;
+async function loadEpisodes(animeId, video, listContainer) {
+  if (!listContainer || !video) return;
 
   try {
     const res = await fetch(`${local_url}/episodes/anime/${animeId}`);
     if (!res.ok) throw new Error("No se pudieron cargar los episodios");
     const episodes = await res.json();
 
-    episodeList.innerHTML = "";
+    listContainer.innerHTML = "";
     episodes.forEach(episode => {
       const li = document.createElement("li");
       li.className = "list-group-item list-group-item-action";
       li.style.cursor = "pointer";
       li.innerText = `${episode.number}. ${episode.title}`;
       li.addEventListener("click", () => {
-        videoPlayer.src = episode.videoUrl;
-        videoPlayer.play();
+        video.src = episode.videoUrl;
+        video.play();
       });
-      episodeList.appendChild(li);
+      listContainer.appendChild(li);
     });
 
     if (episodes[0]) {
-      videoPlayer.src = episodes[0].videoUrl;
+      video.src = episodes[0].videoUrl;
     }
   } catch (err) {
     console.error("Error al cargar episodios:", err);
-    episodeList.innerHTML = "<li class='list-group-item text-danger'>No se encontraron episodios</li>";
+    listContainer.innerHTML = "<li class='list-group-item text-danger'>No se encontraron episodios</li>";
   }
 }
-
-window.addEventListener("DOMContentLoaded", loadAnime);
