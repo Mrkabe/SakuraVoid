@@ -65,6 +65,10 @@
         
     </head>
     <body>
+        <div id="loader-container" style="position: fixed; top:0; left:0; width:100vw; height:100vh; background:black; z-index:9999; display:flex; justify-content:center; align-items:center;">
+        <canvas id="dotlottie-canvas" style="width: 300px; height:300px;"></canvas>
+        </div>
+
         <div class="card text-start position-relative shadow p-4" style="width: 300px; border-radius: 20px;">
             <!--Cerrar modal-->
             <button onclick="location.href='home.html'" class="btn-close-custom">✕</button>
@@ -168,5 +172,29 @@
                 </form>
             </div>
         </div>
+        
+        </script>
+
+        <!--Cambio para Sakura original-->
+        <script type="module">
+        import { DotLottie } from "https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web/+esm";
+
+        // Inicia animación
+        new DotLottie({
+        autoplay: true,
+        loop: true,
+        canvas: document.getElementById("dotlottie-canvas"),
+        src: '../assets/img/gato.json'
+        });
+
+          // Oculta el loader cuando todo el contenido ha cargado
+
+        window.addEventListener("load", () => {
+            const loader = document.getElementById("loader-container");
+            if (loader) loader.style.display = "none";
+        });
+
+        </script>
+
     </body>
 </html>

@@ -6,7 +6,7 @@ const SECRET = 'tu_clave_secreta'; // usa .env
 async function requireAuth(req, res, next) {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith('Bearer '))
-    return res.status(401).send("No autorizado");
+    return res.status(401).json("No autorizado");
 
   const token = authHeader.split(' ')[1];
 

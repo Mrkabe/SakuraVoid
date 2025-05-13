@@ -51,9 +51,14 @@
         </style>
         <script src="../controllers/env.js"></script>
         <script src="../controllers/auth_controller.js"></script>
+        <script src="../controllers/anime_controller.js"></script>
     </head>
 
     <body>
+        <div id="loader-container" style="position: fixed; top:0; left:0; width:100vw; height:100vh; background:black; z-index:9999; display:flex; justify-content:center; align-items:center;">
+        <canvas id="dotlottie-canvas" style="width: 300px; height:300px;"></canvas>
+        </div>
+
         <header>
             <!-- place navbar here -->
             <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #070522;">
@@ -147,7 +152,7 @@
                 <div style="display: flex; justify-content: center;">
 
                     <!-- Contenedor de las cards -->
-                    <div id="ContenedorIndividualPerfilUsuario" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; max-width: 1480px;" >
+                    <div id="myUploadedAnimeContainer" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; max-width: 1480px;">
                                 
                         <!-- Card individual -->
                         <div class="card" style="width: 200px; height: 350px; display: flex; flex-direction: column; color: white; background-color: #251479;">
@@ -277,36 +282,59 @@
                     </div>
                 </div>
 
-
           </div>
         </div>
       </div>
     </div>
   </div>
       
-
-        <!-- Modal para modificar/ opciones -->
+            <!---Aqui es donde esta lo mio-->
+            <!-- Modal para modificar/ opciones -->
             <div class="modal fade" id="modalModificarAnime" tabindex="-1" aria-labelledby="modalModificarAnimeLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content" style="background-color: #1a1339; color: white;">
                     
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalModificarAnimeLabel">Modificar Anime</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        <h5 class="modal-title" id="modalModificarAnimeLabel">Modificar anime</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
                     
                     <div class="modal-body">
-                        <div class="d-flex justify-content-between gap-2">
-                        <button class="btn btn-danger flex-fill">Eliminar anime</button>
-                        <button class="btn flex-fill" style="background-color: #ff69b4; color: white;">Agregar Episodios</button>
-                        <button class="btn flex-fill" style="background-color: #007bff; color: white;">Modificar información</button>
+                        <div class="row text-center">
+                        <!-- Encabezado -->
+                        <div class="col-4 fw-bold">Que deseas hacer?</div>
+                        <div class="col-4 fw-bold">Anime</div>
+                        <div class="col-4 fw-bold">Episodio</div>
+                        </div>
+                        <hr style="background: white; opacity: 0.4;">
+                        
+                        <!-- Fila: Eliminar -->
+                        <div class="row text-center mb-3">
+                        <div class="col-4 text-start">Eliminar</div>
+                        <div class="col-4">
+                            <button class="btn btn-danger btn-sm w-100" id="btnEliminarAnime">Eliminar</button>
+                        </div>
+                        <div class="col-4">
+                            <button class="btn btn-danger btn-sm w-100" id="btnEliminarEpisodio">Eliminar</button>
+                        </div>
+                        </div>
+
+                        <!-- Fila: Modificar información -->
+                        <div class="row text-center">
+                        <div class="col-4 text-start">Modificar información</div>
+                        <div class="col-4">
+                            <button class="btn btn-primary btn-sm w-100" id="btnModificarAnime">Modificar</button>
+                        </div>
+                        <div class="col-4">
+                            <button class="btn btn-primary btn-sm w-100" id="btnModificarEpisodio">Modificar</button>
+                        </div>
                         </div>
                     </div>
-                    
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     </div>
-                    
+
                     </div>
                 </div>
             </div>
@@ -341,5 +369,28 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+                </script>
+
+        <!--Cambio para Sakura original-->
+        <script type="module">
+        import { DotLottie } from "https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web/+esm";
+
+        // Inicia animación
+        new DotLottie({
+        autoplay: true,
+        loop: true,
+        canvas: document.getElementById("dotlottie-canvas"),
+        src: '../assets/img/gato.json'
+        });
+
+          // Oculta el loader cuando todo el contenido ha cargado
+
+        window.addEventListener("load", () => {
+            const loader = document.getElementById("loader-container");
+            if (loader) loader.style.display = "none";
+        });
+
+        </script>
+
     </body>
 </html>

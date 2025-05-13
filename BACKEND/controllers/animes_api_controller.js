@@ -94,3 +94,27 @@ exports.getAnimeById = (req, res) => {
     });
 }
 
+// Actualizar anime
+exports.updateAnime = async (req, res) => {
+  const animeId = req.params.id;
+  const { title, description } = req.body;
+
+  try {
+    const anime = await Anime.findById(animeId);
+    if (!anime) return res.status(404).json({ error: 'Anime no encontrado' });
+
+    if (!anime.uploadedBy.equals(req.user._id)) {
+      return res.status(403).json({ error: 'No autorizado para modificar este anime' });
+    }
+
+    if (title) anime.title = title;
+    if (description) anime.description = description;
+
+    await anime.save();
+    res.status(200).json({ message: 'Anime actualizado correctamente', anime });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error al actualizar anime' });
+  }
+};
+

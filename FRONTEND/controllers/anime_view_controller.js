@@ -1,6 +1,5 @@
 // FRONTEND/controllers/anime_view_controller.js
 
-
 window.addEventListener("DOMContentLoaded", loadAnime);
 
 async function loadAnime() {
