@@ -7,42 +7,10 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/5d505c9b72.js" crossorigin="anonymous"></script>
-    <style>
-        body {
-            background: black;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-            .anime-card {
-                cursor: pointer;
-                transition: transform 0.2s;
-                font-size: 0.9rem;
-            }
-
-            .anime-card:hover {
-                transform: scale(1.01);
-            }
-
-            .anime-card .card-img-top {
-                height: 400px; /* Reducido desde ~200px */
-                object-fit: cover;
-            }
-
-            .anime-card .card-title {
-                font-size: 1rem;
-                margin-bottom: 0.3rem;
-            }
-
-            .anime-card .card-text {
-                font-size: 0.85rem;
-                max-height: 3.2em; /* Limita texto largo */
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-
-            .btn-author {
-                font-size: 0.75rem;
-                padding: 4px 10px;
-                border-radius: 1rem;
+ <style>
+            body {
+                background: black;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             }
 
             .form-control {
@@ -63,9 +31,35 @@
                 color: gray !important;
                 opacity: 1 !important;
             }
-      
-                    
-    </style>
+
+
+            .anime-card {
+                cursor: pointer;
+                transition: transform 0.2s;
+                font-size: 0.9rem;
+                
+            }
+
+            .anime-card:hover {
+                transform: scale(1.01);
+            }
+
+            .btn-ver {
+                  background: linear-gradient(to right, #007bff, #ff69b4);
+                    color: white;
+                    font-size: 12px;
+                    margin-bottom: 10px; 
+                    color: white; 
+                    border: none; 
+                    border-radius: 4px;
+            }
+
+            .btn-ver:hover {
+                background-color: #893bf0;
+            }
+
+    
+        </style>
      <script src="../controllers/env.js"></script>
     <script src="../controllers/auth_controller.js"></script>
     <script src="../controllers/anime_controller.js"></script>
@@ -150,124 +144,10 @@
 
         <div class="container mt-4">
             <h2 class="text-center mb-4">Mis Animes Favoritos</h2>
+            <div style="display: flex; justify-content: center; padding-top: 30px;">
 
-            <div id="favoriteAnimeContainer" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4"  >
-                <!-- Tarjeta 1 -->
-                    <div class="col">
-                        <div class="card text-white shadow rounded-4 h-100 anime-card" style="background-color: #251479;">
-                        <div style="position: relative;">
-                            <img src="https://m.media-amazon.com/images/I/81ngrpeKZWL._AC_UF894,1000_QL80_.jpg" class="card-img-top rounded-top-4" alt="Girls und paanzer">
-                            <!-- icono fav -->
-                            <i class="fa-solid fa-heart favorite-icon" title="Marcar como favorito" 
-                            style="position: absolute; top: 10px; right: 10px; color: white; font-size: 40px; cursor: pointer;"></i>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Girls Und Panzer</h5>
-                            <p class="card-text">Chicas compiten en un deporte de tanques para salvar su escuela</p>
-                        </div>
-                        <div class="card-footer bg-transparent border-0 d-flex justify-content-end">
-                            <button class="btn btn-sm btn-author" style="background-color: #A032F0;">LuisLuig</button>
-                        </div>
-                        </div>
-                    </div>
-
-                    <!-- Tarjeta 2 -->
-                    <div class="col">
-                        <div class="card text-white shadow rounded-4 h-100 anime-card" style="background-color: #251479;">
-                        <div style="position: relative;">
-                            <img src="https://m.media-amazon.com/images/I/81vuj1JYidL.jpg" class="card-img-top rounded-top-4" alt="bunny girl">
-                            <!-- icono fav -->
-                            <i class="fa-solid fa-heart favorite-icon" title="Marcar como favorito" 
-                            style="position: absolute; top: 10px; right: 10px; color: white; font-size: 40px; cursor: pointer;"></i>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Bunny girl</h5>
-                            <p class="card-text">Sakuta se ve envuelto en el misterioso sindrome de la pubertad, el cual causa que su realidad se distoricione causando estragos</p>
-                        </div>
-                        <div class="card-footer bg-transparent border-0 d-flex justify-content-end">
-                            <button class="btn btn-sm btn-author" style="background-color: #F01595;">ReVerts</button>
-                        </div>
-                        </div>
-                    </div>
-
-                    <!-- Tarjeta 3 -->
-                    <div class="col">
-                        <div class="card text-white shadow rounded-4 h-100 anime-card" style="background-color: #251479;">
-                        <div style="position: relative;">
-                            <img src="https://static.wixstatic.com/media/a27d24_711b5afaaf3a42e18eb540fa51557b0e~mv2.jpg/v1/fill/w_568,h_794,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/a27d24_711b5afaaf3a42e18eb540fa51557b0e~mv2.jpg" class="card-img-top rounded-top-4" alt="Go-toubun">
-                            <!-- icono fav -->
-                            <i class="fa-solid fa-heart favorite-icon" title="Marcar como favorito" 
-                            style="position: absolute; top: 10px; right: 10px; color: white; font-size: 40px; cursor: pointer;"></i>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Go-toubun no hanayome</h5>
-                            <p class="card-text">Futarou da clases a unas quintillizas, dando inicio a una comedia romantica</p>
-                        </div>
-                        <div class="card-footer bg-transparent border-0 d-flex justify-content-end">
-                            <button class="btn btn-sm btn-author" style="background-color: #A032F0;">CamiiID</button>
-                        </div>
-                        </div>
-                    </div>
-
-                    <!-- Tarjeta 4 -->
-                    <div class="col">
-                        <div class="card text-white shadow rounded-4 h-100 anime-card" style="background-color: #251479;">
-                        <div style="position: relative;">
-                            <img src="https://www3.animeflv.net/uploads/animes/covers/4142.jpg" class="card-img-top rounded-top-4" alt="Danjo no Yuujou wa Seiritsu suru? (Iya, Shinai!!)">
-                             <!-- icono fav -->
-                            <i class="fa-solid fa-heart favorite-icon" title="Marcar como favorito" 
-                            style="position: absolute; top: 10px; right: 10px; color: white; font-size: 40px; cursor: pointer;"></i>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Danjo no Yuujou wa Seiritsu suru? (Iya, Shinai!!)</h5>
-                            <p class="card-text">La amistad de la infancia entre Himari y Yu se tambalea cuando Yu se reencuentra en preparatoria con su primer amor. Himari, que nunca experimentó la emoción del amor, ahora debe enfrentar sus propios sentimientos. Sus sueños compartidos y los tranquilos días en su club de jardinería se ponen a prueba en esta historia con amor, flores y los altibajos que supone madurar.</p>
-                        </div>
-                        <div class="card-footer bg-transparent border-0 d-flex justify-content-end">
-                            <button class="btn btn-sm btn-author" style="background-color: #F01595;">ReVerts</button>
-                        </div>
-                        </div>
-                    </div>
-
-                    <!-- Tarjeta 5 -->
-                    <div class="col">
-                        <div class="card text-white shadow rounded-4 h-100 anime-card" style="background-color: #251479;">
-                        <div style="position: relative;">
-                            <img src="https://www3.animeflv.net/uploads/animes/covers/989.jpg" class="card-img-top rounded-top-4" alt="Yahari Ore no Seishun Love Come wa Machigatteiru">
-                            <!-- icono fav -->
-                            <i class="fa-solid fa-heart favorite-icon" title="Marcar como favorito" 
-                            style="position: absolute; top: 10px; right: 10px; color: white; font-size: 40px; cursor: pointer;"></i>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Yahari Ore no Seishun Love Come wa Machigatteiru</h5>
-                            <p class="card-text">La comedia romántica gira en torno a un estudiante de instituto bastante antisocial llamado Hachiman Hikigaya y que tiene una distorsionada visión de la vida, aparte de no tener amigos ni mucho menos novia. Cuando ve a sus compañeros de clase hablando alegremente de sus vidas adolescentes, él murmura que son todos una panda de mentirosos. Cuando le preguntan por sus sueños para el futuro, su respuesta es: ?no trabajar?. Un profesor sin embargo consigue enrrolar a Hachiman en el club de voluntariado, al que resulta que está también apuntada la chica más guapa del instituto, Yukino Yukinoshita.</p>
-                        </div>
-                        <div class="card-footer bg-transparent border-0 d-flex justify-content-end">
-                            <button class="btn btn-sm btn-author" style="background-color: #9E2FFF;">MazeRuu</button>
-                        </div>
-                        </div>
-                    </div>
-
-                    <!-- Tarjeta 6 -->
-                    <div class="col">
-                        <div class="card text-white shadow rounded-4 h-100 anime-card" style="background-color: #251479;">
-                        <div style="position: relative;">
-                            <img src="https://www3.animeflv.net/uploads/animes/covers/2997.jpg" class="card-img-top rounded-top-4" alt="Grand Blue">
-                            <!-- icono fav -->
-                            <i class="fa-solid fa-heart favorite-icon" title="Marcar como favorito" 
-                            style="position: absolute; top: 10px; right: 10px; color: white; font-size: 40px; cursor: pointer;"></i>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Grand Blue</h5>
-                            <p class="card-text">Iori Kitahara recién comienza su primer año en la universidad. Se muda a la tienda de submarinismo de su tío, Grand Blue, él anticipa la vida universitaria de sus sueños, llena de hermosas chicas y buenos amigos. Pero las cosas no salen exactamente de acuerdo al plan. Se encuentra con un grupo de estudiantes, que de inmediato lo obliga a participar en sus actividades alcohólicas. Aunque no estaba dispuesto al principio, Iori rápidamente se rinde y se convierte en el alma de la fiesta. Desafortunadamente, con eso gana el desprecio de su prima, Chisa Kotegawa. Sin embargo, Iori todavía promete cumplir su vida universitaria ideal, pero ¿las cosas irán de acuerdo con lo planeado esta vez?</p>
-                        </div>
-                        <div class="card-footer bg-transparent border-0 d-flex justify-content-end">
-                            <button class="btn btn-sm btn-author" style="background-color: #F01595;">ReVerts</button>
-                        </div>
-                        </div>
-                    </div>
-
-                    </div>
-                </div>
+                <!-- Contenedor de las cards -->
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; max-width: 1480px; " id="favoriteAnimeContainer" ></div>
             </div>
         </div>
 

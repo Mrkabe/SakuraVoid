@@ -1,3 +1,4 @@
+/*
 async function getUserWithFavorites() {
   const user = JSON.parse(localStorage.getItem('user'));
   const token = localStorage.getItem('token');
@@ -7,4 +8,4 @@ async function getUserWithFavorites() {
   });
 
   return await res.json();
-}
+} */
