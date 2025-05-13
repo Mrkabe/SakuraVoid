@@ -1,12 +1,15 @@
 // FRONTEND/controllers/upload_controller.js
 
 window.addEventListener("DOMContentLoaded", () => {
-  document.querySelector(".btn-subir").addEventListener("click", createAnime);
+  const subirBtn = document.querySelector(".btn-subir");
+  if (subirBtn) subirBtn.addEventListener("click", createAnime);
   loadMyAnimes();
-  addChapter(); // Cargar un bloque por defecto
+  addChapter();
 });
 
-async function createAnime(btn) {
+async function createAnime(event) {
+  event.preventDefault();
+
   const title = document.getElementById("nombre_anime").value;
   const description = document.getElementById("descripcion_anime").value;
   const imageInput = document.querySelector("input[name='avatar_anime']");
@@ -17,6 +20,7 @@ async function createAnime(btn) {
 
   if (!title || !imageFile) return alert("Título e imagen son obligatorios.");
 
+  const btn = event.target;
   btn.disabled = true;
   btn.textContent = "Subiendo...";
 
@@ -67,14 +71,11 @@ async function createEpisode(button) {
   formData.append("file", file);
   formData.append("anime", animeId);
 
+  for (const [key, val] of formData.entries()) {
+    console.log("🧾 Enviando:", key, val);
+  }
+
   try {
-
-    //temporal
-    console.log([...formData.entries()]);
-    for (const [key, val] of formData.entries()) {
-      console.log("🧾 Enviando:", key, val);
-    }
-
     const res = await fetch(`${local_url}/episodes`, {
       method: "POST",
       headers: {
@@ -89,12 +90,6 @@ async function createEpisode(button) {
   } catch (err) {
     console.error(err);
     alert("Error al subir episodio");
-    console.error("🔥 Error en createEpisode:", error);
-    res.status(500).json({
-    message: "Error al crear episodio",
-    error: error.message || error.toString(),
-    stack: error.stack
-  });
   } finally {
     button.disabled = false;
     button.textContent = "Subir";
