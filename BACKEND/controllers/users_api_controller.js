@@ -35,7 +35,14 @@ exports.getUserById = (req, res) => {
   const id = req.params.id;
 
   User.findById(id)
-    .populate('favoritos')  
+    .populate({
+      path: 'favoritos',
+      populate: {
+        path: 'uploadedBy',
+        select: 'name'
+      }
+    })
+
     .then(user => {
       if (!user) return res.status(404).json({ error: 'Usuario no encontrado' });
       res.json(user);

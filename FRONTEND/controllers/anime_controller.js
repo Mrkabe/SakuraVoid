@@ -55,7 +55,7 @@ function renderAnimeCard(anime, container) {
   if (!anime || !anime._id || !anime.title) return; // evitar tarjetas vacías o inválidas
 
   const card = document.createElement("div");
-  card.className = "card";
+  card.className = "anime-card";
   card.style = "width: 200px; height: 350px; display: flex; flex-direction: column; color: white; background-color: #251479; position: relative;";
   card.innerHTML = `
     <i class="fa-heart favorite-icon ${favoriteIds.includes(anime._id) ? 'fa-solid' : 'fa-regular'}" data-id="${anime._id}" title="Favorito"
