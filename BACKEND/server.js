@@ -14,6 +14,7 @@ app.use('/assets', express.static('../FORNTEND/assets'));
 app.use(express.static(path.join(__dirname, '../FRONTEND')));
 app.use('/storage/imgs', express.static(path.join(__dirname, 'libs', 'storage', 'imgs')));
 app.use('/storage/videos', express.static(path.join(__dirname, 'libs', 'storage', 'videos')));
++
 conectToMongo();
 
 

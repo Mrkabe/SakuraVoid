@@ -197,6 +197,18 @@ document.addEventListener("DOMContentLoaded", async () => {
   const btnEliminarEpisodio = document.getElementById("btnEliminarEpisodio");
   const btnModificarAnime = document.getElementById("btnModificarAnime");
   const btnModificarEpisodio = document.getElementById("btnModificarEpisodio");
+if (btnModificarAnime) {
+  btnModificarAnime.addEventListener("click", () => {
+    const modalElement = document.getElementById("modalEditarAnime");
+    if (!modalElement) {
+      console.error("El modal #modalEditarAnime no se encontró en el DOM.");
+      return;
+    }
+    const modal = new bootstrap.Modal(modalElement);
+    modal.show();
+  });
+}
+
 
   if (btnEliminarAnime) {
     btnEliminarAnime.addEventListener("click", async () => {
@@ -220,43 +232,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  if (btnEliminarEpisodio) {
+ if (btnEliminarEpisodio) {
   btnEliminarEpisodio.addEventListener("click", async () => {
-    const token = sessionStorage.getItem("token");
-    if (!selectedAnimeId || !token) return alert("Anime no seleccionado o no autenticado");
-
-    const numero = prompt("Número del episodio a eliminar:");
-    if (!numero) return;
-
-    try {
-      const res = await fetch(`${API_EPISODES}/deleteByNumber`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          headers: { Authorization: `Bearer ${token}` }
-        },
-        body: JSON.stringify({
-          animeId: selectedAnimeId,
-          number: numero
-        })
-      });
-
-      if (!res.ok) {
-        const text = await res.text();
-        alert(text);
-        return;
-      }
-
-      const data = await res.json();
-      alert(data.message || "Episodio eliminado");
-      location.reload();
-    } catch (err) {
-      console.error(err);
-      alert("Error al eliminar episodio");
-    }
+    const modal = new bootstrap.Modal(document.getElementById("modalEliminarEpisodio"));
+    await cargarEpisodiosEnSelectEliminar();
+    modal.show();
   });
-  }
+}
 
+  /*
   if (btnModificarAnime) {
     btnModificarEpisodio.addEventListener("click", async () => {
       const token = sessionStorage.getItem("token");
@@ -295,38 +279,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         alert("Error al modificar episodio");
       }
     });
-  }
+  }*/
 
   if (btnModificarEpisodio) {
-    btnModificarEpisodio.addEventListener("click", async () => {
-      const token = sessionStorage.getItem("token");
-      const episodeId = prompt("Introduce el ID del episodio a modificar:");
-      const nuevoTitulo = prompt("Nuevo título del episodio:");
-      const nuevoNumero = prompt("Nuevo número:");
+  btnModificarEpisodio.addEventListener("click", async () => {
+    const modal = new bootstrap.Modal(document.getElementById("modalEditarEpisodio"));
+    await cargarEpisodiosEnSelect();
+    modal.show();
+  });
+}
 
-      if (!episodeId || !nuevoTitulo || !nuevoNumero) return;
-
-      try {
-        const res = await fetch(`${API_EPISODES}/${episodeId}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            headers: { Authorization: `Bearer ${token}` }
-          },
-          body: JSON.stringify({
-            title: nuevoTitulo,
-            number: nuevoNumero
-          })
-        });
-        const data = await res.json();
-        alert("Episodio modificado");
-        location.reload();
-      } catch (err) {
-        console.error(err);
-        alert("Error al modificar el episodio");
-      }
-    });
-  }
 });
 
 let selectedAnimeId = null;
@@ -342,3 +304,120 @@ document.querySelectorAll(".card").forEach(card => {
     selectedAnimeId = card.getAttribute("data-anime-id");
   });
 });
+
+async function confirmarEdicionAnime() {
+  const token = sessionStorage.getItem("token");
+  if (!selectedAnimeId || !token) return alert("Anime no seleccionado");
+
+  const titulo = document.getElementById("editarTitulo").value;
+  const descripcion = document.getElementById("editarDescripcion").value;
+  const imagen = document.getElementById("editarImagen").files[0];
+
+  const formData = new FormData();
+  if (titulo) formData.append("title", titulo);
+  if (descripcion) formData.append("description", descripcion);
+  if (imagen) formData.append("file", imagen);
+
+  try {
+    const res = await fetch(`${API_ANIMES}/${selectedAnimeId}`, {
+      method: "PUT",
+      headers: { Authorization: `Bearer ${token}` },
+      body: formData
+    });
+
+    const data = await res.json();
+    alert("Anime actualizado");
+    location.reload();
+  } catch (err) {
+    console.error(err);
+    alert("Error al actualizar anime");
+  }
+}
+
+async function cargarEpisodiosEnSelect() {
+  const select = document.getElementById("selectNumeroEpisodio");
+  select.innerHTML = `<option value="">Selecciona el número del episodio</option>`;
+
+  try {
+    const res = await fetch(`${local_url}/episodes/anime/${selectedAnimeId}`);
+    const episodios = await res.json();
+
+    episodios.forEach(ep => {
+      const opt = document.createElement("option");
+      opt.value = ep._id;
+      opt.textContent = `#${ep.number} - ${ep.title}`;
+      select.appendChild(opt);
+    });
+  } catch (err) {
+    console.error("Error al cargar episodios:", err);
+  }
+}
+
+async function confirmarEdicionEpisodio() {
+  const token = sessionStorage.getItem("token");
+  const episodioId = document.getElementById("selectNumeroEpisodio").value;
+  const nuevoTitulo = document.getElementById("nuevoTituloEpisodio").value;
+  const nuevoVideo = document.getElementById("nuevoVideoEpisodio").files[0];
+
+  if (!episodioId) return alert("Selecciona un episodio");
+
+  const formData = new FormData();
+  if (nuevoTitulo) formData.append("title", nuevoTitulo);
+  if (nuevoVideo) formData.append("file", nuevoVideo);
+
+  try {
+    const res = await fetch(`${local_url}/episodes/${episodioId}`, {
+      method: "PUT",
+      headers: { Authorization: `Bearer ${token}` },
+      body: formData
+    });
+
+    const data = await res.json();
+    alert("Episodio modificado");
+    location.reload();
+  } catch (err) {
+    console.error(err);
+    alert("Error al modificar el episodio");
+  }
+}
+
+async function cargarEpisodiosEnSelectEliminar() {
+  const select = document.getElementById("selectEliminarEpisodio");
+  select.innerHTML = `<option value="">Selecciona un episodio</option>`;
+
+  try {
+    const res = await fetch(`${local_url}/episodes/anime/${selectedAnimeId}`);
+    const episodios = await res.json();
+
+    episodios.forEach(ep => {
+      const opt = document.createElement("option");
+      opt.value = ep._id;
+      opt.textContent = `#${ep.number} - ${ep.title}`;
+      select.appendChild(opt);
+    });
+  } catch (err) {
+    console.error("Error al cargar episodios para eliminación:", err);
+  }
+}
+
+async function confirmarEliminacionEpisodio() {
+  const token = sessionStorage.getItem("token");
+  const episodioId = document.getElementById("selectEliminarEpisodio").value;
+  if (!episodioId) return alert("Selecciona un episodio");
+
+  if (!confirm("¿Estás seguro de que deseas eliminar este episodio?")) return;
+
+  try {
+    const res = await fetch(`${local_url}/episodes/${episodioId}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${token}` }
+    });
+
+    const data = await res.json();
+    alert(data.message || "Episodio eliminado");
+    location.reload();
+  } catch (err) {
+    console.error("Error al eliminar episodio:", err);
+    alert("Error al eliminar episodio");
+  }
+}

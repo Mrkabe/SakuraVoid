@@ -15,7 +15,7 @@ const episodeSchema = new mongoose.Schema({
   },
   anime: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Anime",
+    ref: "anime",
     required: true,
   },
 });

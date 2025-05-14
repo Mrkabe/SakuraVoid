@@ -110,6 +110,11 @@ exports.updateAnime = async (req, res) => {
     if (title) anime.title = title;
     if (description) anime.description = description;
 
+    // ✅ Imagen nueva
+    if (req.file) {
+     anime.imgUrl = `${req.protocol}://${req.get("host")}/storage/imgs/${req.file.filename}`;
+    }
+
     await anime.save();
     res.status(200).json({ message: 'Anime actualizado correctamente', anime });
   } catch (err) {
@@ -117,4 +122,5 @@ exports.updateAnime = async (req, res) => {
     res.status(500).json({ error: 'Error al actualizar anime' });
   }
 };
+
 

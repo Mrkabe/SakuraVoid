@@ -9,5 +9,6 @@ routerAnimes.post('/', requireAuth, uploadImage.single('file'), animesController
 routerAnimes.get('/', animesController.getAllAnimes);
 routerAnimes.get('/:id', animesController.getAnimeById);
 routerAnimes.delete('/:id', requireAuth, animesController.deleteAnime);
-routerAnimes.put('/:id', requireAuth, animesController.updateAnime);
+routerAnimes.put('/:id', requireAuth, uploadImage.single('file'), animesController.updateAnime);
+
 module.exports = routerAnimes;

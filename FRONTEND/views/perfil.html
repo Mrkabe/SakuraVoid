@@ -338,6 +338,70 @@
                     </div>
                 </div>
             </div>
+            <!-- Modal para editar anime -->
+                <div class="modal fade" id="modalEditarAnime" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="background: #1a1339; color: white;">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Editar Anime</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formEditarAnime">
+                        <input type="text" id="editarTitulo" class="form-control mb-2" placeholder="Nuevo título">
+                        <textarea id="editarDescripcion" class="form-control mb-2" placeholder="Nueva descripción"></textarea>
+                        <input type="file" id="editarImagen" class="form-control mb-2">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" onclick="confirmarEdicionAnime()">Guardar cambios</button>
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            <!-- Modal para editar episodio -->
+                <div class="modal fade" id="modalEditarEpisodio" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="background-color: #1a1339; color: white;">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Editar Episodio</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <select id="selectNumeroEpisodio" class="form-select mb-3">
+                        <option value="">Selecciona el número del episodio</option>
+                        </select>
+                        <input type="text" id="nuevoTituloEpisodio" class="form-control mb-2" placeholder="Nuevo título">
+                        <input type="file" id="nuevoVideoEpisodio" class="form-control mb-2" accept="video/mp4,video/webm">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" onclick="confirmarEdicionEpisodio()">Guardar cambios</button>
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <!-- Modal para eliminar episodio -->
+                <div class="modal fade" id="modalEliminarEpisodio" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="background-color: #1a1339; color: white;">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Eliminar Episodio</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <select id="selectEliminarEpisodio" class="form-select mb-3">
+                        <option value="">Selecciona un episodio</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" onclick="confirmarEliminacionEpisodio()">Eliminar</button>
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
 
 
             <!-- JavaScript para alternar el estado del ícono -->
