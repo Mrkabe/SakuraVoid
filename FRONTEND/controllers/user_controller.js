@@ -172,13 +172,12 @@ if (perfilId === currentUser.id) {
 }
 
 
-//funcion para seguir usuarios
-window.toggleFollowUsuario = async function () {
-  console.log("🧪 toggleFollowUsuario activado");
+window.toggleFollowUsuario = async function (event) {
+  const btn = event?.target || document.getElementById("btnSeguirUsuario"); // Soporta ambos
   const token = sessionStorage.getItem("token");
-  const btn = document.getElementById("btnSeguirUsuario");
-  console.log("target ID:", btn.dataset.targetId);
-  alert("Intentando seguir/dejar de seguir");
+
+  if (!btn || !token) return;
+
   const targetId = btn.dataset.targetId;
 
   try {
@@ -188,30 +187,22 @@ window.toggleFollowUsuario = async function () {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`
       },
-      body: JSON.stringify({ targetUserId: targetId})
+      body: JSON.stringify({ targetUserId: targetId })
     });
 
     if (!res.ok) {
       const text = await res.text();
-      console.error("🔴 Error en respuesta:", text);
+      console.error("Error en respuesta:", text);
       throw new Error("Fallo al actualizar seguimiento");
     }
 
-
     const data = await res.json();
-
-    // Actualiza el botón
     btn.textContent = data.following ? "Dejar de seguir" : "Seguir";
-
-    // 🔄 Actualiza la sección de "Usuarios seguidos"
-    await renderUsuariosSeguidos(); // <- AQUÍ
-
   } catch (err) {
     console.error("Error al seguir/dejar de seguir:", err);
     alert("No se pudo actualizar el seguimiento.");
   }
 };
-
 
 // Desplazarse hacia la sección del usuario consultado
 function scrollWhenReady() {
@@ -228,11 +219,7 @@ function scrollWhenReady() {
 
   observer.observe(contenedor, { childList: true });
 }
-
 scrollWhenReady();
-
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const currentPath = window.location.pathname;

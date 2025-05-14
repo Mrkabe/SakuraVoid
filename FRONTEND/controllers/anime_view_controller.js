@@ -7,6 +7,7 @@ async function loadAnime() {
   const animeViewContainer = document.getElementById("animeViewContainer");
   const episodeList = document.getElementById("episodeList");
   const videoPlayer = document.getElementById("videoPlayer");
+  
 
   console.log("✅ loadAnime se está ejecutando");
   console.log("📦 animeId extraído:", animeId);
@@ -24,6 +25,7 @@ async function loadAnime() {
     const anime = await res.json();
 
     renderAnimeDetails(anime, animeViewContainer);
+    inicializarBotonSeguirAutor(anime.uploadedBy._id);
     loadEpisodes(anime._id, videoPlayer, episodeList);
   } catch (err) {
     console.error("Error al cargar anime:", err);
@@ -40,7 +42,7 @@ function renderAnimeDetails(anime, container) {
       <h4 class="card-title" style="font-size: 14px; margin: 0;">${anime.title}</h4>
       <p class="card-text" style="font-size: 12px; margin-top: 5px;">${anime.description || ''}</p>
       <h1 style="background-color: #7F00B2; color: white; font-size: 12px; text-align: center;">by @${anime.uploadedBy?.name || 'Anon'}</h1>
-      <a href="perfil.html"><button style="margin-bottom: 10px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px; padding: 6px; cursor: pointer;"><strong>Seguir al usuario</strong></button></a>
+      <button class="btn btn-sm btn-light mt-2" id="btnSeguirAutor" onclick="toggleFollowUsuario(event)" data-target-id="">
     </div>
   `;
 }
@@ -72,5 +74,25 @@ async function loadEpisodes(animeId, video, listContainer) {
   } catch (err) {
     console.error("Error al cargar episodios:", err);
     listContainer.innerHTML = "<li class='list-group-item text-danger'>No se encontraron episodios</li>";
+  }
+}
+
+async function inicializarBotonSeguirAutor(autorId) {
+  const btn = document.getElementById("btnSeguirAutor");
+  const token = sessionStorage.getItem("token");
+  const currentUser = JSON.parse(sessionStorage.getItem("user"));
+  if (!btn || !token || !currentUser) return;
+
+  try {
+    const res = await fetch(`${local_url}/users/${autorId}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    const usuario = await res.json();
+
+    const yaLoSigues = (usuario.followers || []).some(f => f._id === currentUser.id || f === currentUser.id);
+    btn.textContent = yaLoSigues ? "Dejar de seguir" : "Seguir";
+    btn.dataset.targetId = usuario._id;
+  } catch (err) {
+    console.error("Error al verificar seguimiento:", err);
   }
 }
