@@ -71,14 +71,17 @@ function renderAnimeCard(anime, container) {
     </button>
   ` : '';
 
-  const verBtnYAutor = !isPerfil ? `
-    <a href="perfil.html" style="background-color: #7F00B2; color: white; font-size: 12px;">by ${anime.uploadedBy?.name || 'Anon'}</a>
-    <a href="anime.html?id=${anime._id}" title="MiAnime">
-      <button style="margin-left: 10px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px;">
-        <strong>Ver</strong>
-      </button>
-    </a>
-  ` : '';
+  const verBtnYAutor = `
+  <a href="perfil.html" style="background-color: #7F00B2; color: white; font-size: 12px;">
+    by ${anime.uploadedBy?.name || 'Anon'}
+  </a>
+  <a href="anime.html?id=${anime._id}" title="Ver Anime">
+    <button style="margin-left: 10px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px;">
+      <strong>Ver</strong>
+    </button>
+  </a>
+`;
+
 
   card.style = "width: 200px; height: 350px; display: flex; flex-direction: column; color: white; background-color: #251479; position: relative;";
   card.innerHTML = `
@@ -421,3 +424,16 @@ async function confirmarEliminacionEpisodio() {
     alert("Error al eliminar episodio");
   }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const user = JSON.parse(sessionStorage.getItem("user"));
+  if (!user) return;
+
+  const userCard = document.querySelector(".card.text-white.text-center.p-4");
+  if (!userCard) return;
+
+  userCard.innerHTML = `
+    <h5>${user.name}</h5>
+    <p>@${user.name.replace(/\s+/g, '').toLowerCase()}</p>
+  `;
+});
