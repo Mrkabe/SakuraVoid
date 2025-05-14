@@ -244,46 +244,7 @@ if (btnModificarAnime) {
   });
 }
 
-  /*
-  if (btnModificarAnime) {
-    btnModificarEpisodio.addEventListener("click", async () => {
-      const token = sessionStorage.getItem("token");
-      if (!selectedAnimeId || !token) return alert("Anime no seleccionado o no autenticado");
-
-      const numero = prompt("Número del episodio a modificar:");
-      const nuevoTitulo = prompt("Nuevo título para el episodio:");
-
-      if (!numero || !nuevoTitulo) return;
-
-      try {
-        const res = await fetch(`${API_EPISODES}/modifyByNumber`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            headers: { Authorization: `Bearer ${token}` }
-          },
-          body: JSON.stringify({
-            animeId: selectedAnimeId,
-            number: numero,
-            title: nuevoTitulo
-          })
-        });
-
-        if (!res.ok) {
-          const text = await res.text();
-          alert(text);
-          return;
-        }
-
-        const data = await res.json();
-        alert(data.message || "Episodio modificado");
-        location.reload();
-      } catch (err) {
-        console.error(err);
-        alert("Error al modificar episodio");
-      }
-    });
-  }*/
+  
 
   if (btnModificarEpisodio) {
   btnModificarEpisodio.addEventListener("click", async () => {
@@ -297,7 +258,7 @@ if (btnModificarAnime) {
 
 let selectedAnimeId = null;
 
-// Aqui es donde esta lo mio
+
 function setSelectedAnimeId(id) {
   selectedAnimeId = id;
 }
