@@ -52,6 +52,8 @@
         <script src="../controllers/env.js"></script>
         <script src="../controllers/auth_controller.js"></script>
         <script src="../controllers/anime_controller.js"></script>
+        <script src="../controllers/user_controller.js"></script>
+
     </head>
 
     <body>
@@ -131,15 +133,15 @@
         <main class="container main" style="margin-top: 150px;">
         <!-- Sección: Perfil del Usuario -->
   <div class="container mt-5">
-    <div class="row" style="margin-top: 50px;">
-      <!-- Info Usuario -->
-      <div class="col-md-4 mb-4">
-        <h4 class="mb-3">Mi usuario</h4>
-        <div class="card text-white text-center p-4" style="background-color: #251479;">
-          <h5>Nombre del Usuario</h5>
-          <p>@usuario</p>
+        <div class="row" style="margin-top: 50px;">
+            <!-- Info Usuario -->
+            <div class="col-md-4 mb-4">
+                <h4 class="mb-3">Mi usuario</h4>
+                <div class="card text-white text-center p-4" style="background-color: #251479;">
+                <h5>Nombre del Usuario</h5>
+                <p>@usuario</p>
+            </div>
         </div>
-      </div>
 
       <!-- Animes Recientes -->
       <div class="col-md-8 mb-4">
@@ -154,24 +156,7 @@
                     <!-- Contenedor de las cards -->
                     <div id="myUploadedAnimeContainer" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; max-width: 1480px;">
                                 
-                        <!-- Card individual -->
-                        <div class="card" style="width: 200px; height: 350px; display: flex; flex-direction: column; color: white; background-color: #251479;">
-
-                            <!-- icono fav -->
-                            <i class="fa-regular fa-heart favorite-icon" title="Marcar como favorito" 
-                            style="position: absolute; top: 10px; right: 10px; color: white; font-size: 20px; cursor: pointer;"></i>
-
-                            <img class="card-img-top" src="https://media.gq.com.mx/photos/66b3e2ab1eb4176c241add84/16:9/w_2240,c_limit/Mejores_series_de_anime.jpg"
-                                alt="Card image"
-                                style="height: 60%; object-fit: cover;">
-                            <div class="card-body" style="height: 40%; overflow: hidden;">
-                                <h4 class="card-title" style="font-size: 14px;">Demon Slayer</h4>
-                                <p class="card-text" style="font-size: 12px;">Tanjiro Kamado no tiene otra opción más que convertirse en cazador de demonios.</p>
-                                <button type="button" class="btn btn-primary" style="margin-left: 50px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4);
-                                color: white; border: none; border-radius: 4px;" data-bs-toggle="modal" data-bs-target="#modalModificarAnime">Modificar</button>
-                            </div>
-                        </div>
-
+                        
                     </div>
                 </div>
 
@@ -183,109 +168,53 @@
   </div>
  
   <!-- Usuarios Seguidos -->
-  <div class="container mb-5">
-      <div class="row" style="margin-top: 50px;">
-          <div class="col-md-4 mb-4">
-            <h4 class="mb-3">Usuarios seguidos</h4>
-        <div class="card text-white text-center p-4" style="background-color: #251479;">
-          <h5>Nombre del Usuario</h5>
-          <p>@usuario</p>
+    <div class="container mb-5">
+    <div class="row" style="margin-top: 50px;">
+        <div class="col-md-4 mb-4">
+        <h4 class="mb-3">Usuarios seguidos</h4>
+
+        <!-- Aquí va la lista de usuarios -->
+        <div id="ContenedorUsuariosSeguidos" style="display: flex; flex-direction: column; gap: 10px;">
         </div>
-      </div>
-      <div class="col-md-8 mb-4">
+        </div>
+
+        <div class="col-md-8 mb-4">
         <div class="card card-transparente">
-          <h4>Animes recientes</h4>
-          <div class="row g-4 mt-2 justify-content-center">
+            <h4>Animes del usuario seleccionado</h4>
+            <div id="AnimesDeUsuarioSeguido" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;"></div>
+        </div>
+        </div>
+    </div>
+    </div>
 
-                <!-- Contenedor de las cards para centrarlas -->
+
+    <!-- Usuario Consultado -->
+    <div class="container mb-5" id="bloqueUsuarioConsultado" style="display: none;"> <!-- Oculto por default -->
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-md-4 mb-4">
+            <h4 class="mb-3">Usuario consultado</h4>
+            <div class="card text-white text-center p-4" style="background-color: #251479;">
+                <h5 id="nombreUsuarioConsultado">Nombre del Usuario</h5>
+                <p id="arrobaUsuarioConsultado">@usuario</p>
+                <button class="btn btn-light btn-sm mt-2" id="btnSeguirUsuario" onclick="toggleFollowUsuario()">Seguir</button>
+            </div>
+            </div>
+            <div class="col-md-8 mb-4">
+            <div class="card card-transparente">
+                <h4>Animes recientes</h4>
+                <div class="row g-4 mt-2 justify-content-center">
                 <div style="display: flex; justify-content: center;">
-
-                    <!-- Contenedor de las cards -->
-                    <div id="ContenedorIndividualPerfilFavoritos" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; max-width: 1480px;" >
-                                
-                        <!-- Card individual -->
-                        <div class="card" style="width: 200px; height: 350px; display: flex; flex-direction: column; color: white; background-color: #251479;">
-
-                            <!-- icono fav -->
-                        <i class="fa-solid fa-heart favorite-icon" title="Marcar como favorito" 
-                        style="position: absolute; top: 10px; right: 10px; color: white; font-size: 20px; cursor: pointer;"></i>
-
-                        <img class="card-img-top" src="https://media.gq.com.mx/photos/66b3e2ab1eb4176c241add84/16:9/w_2240,c_limit/Mejores_series_de_anime.jpg"
-                            alt="Card image"
-                            style="height: 60%; object-fit: cover;">
-                        <div class="card-body" style="height: 40%; overflow: hidden;">
-                            <h4 class="card-title" style="font-size: 14px;">Demon Slayer</h4>
-                            <p class="card-text" style="font-size: 12px;">Tanjiro Kamado no tiene otra opción más que convertirse en cazador de demonios.</p>
-                            <a href="#" style="background-color: #7F00B2; color: white; font-size: 12px;">by @Seeling23</a>
-                            <a href="anime.html" title="MiAnime">
-                                <button style="margin-left: 50px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px;"><strong>Ver</strong></button>
-                            </a>
-                        </div>
-                        </div>
-
-
-
-
+                    <div id="ContenedorIndividualPerfilConsultado"
+                    style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; max-width: 1480px;">
+                    <!-- Aquí van las cards de anime -->
                     </div>
                 </div>
-
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Usuario Consultado -->
-  <div class="container mb-5">
-      <div class="row" style="margin-top: 50px;">
-          <div class="col-md-4 mb-4">
-          <h4 class="mb-3">Usuario consultado</h4>
-        <div class="card text-white text-center p-4" style="background-color: #251479;">
-          <h5>Nombre del Usuario</h5>
-          <p>@usuario</p>
-        </div>
-      </div>
-      <div class="col-md-8 mb-4">
-        <div class="card card-transparente">
-          <h4>Animes recientes</h4>
-          <div class="row g-4 mt-2 justify-content-center">
-            
-
-                <!-- Contenedor de las cards para centrarlas -->
-                <div style="display: flex; justify-content: center;">
-
-                    <!-- Contenedor de las cards -->
-                    <div id="ContenedorIndividualPerfilConsultado" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; max-width: 1480px;" >
-                                
-                        <!-- Card individual -->
-                        <div class="card" style="width: 200px; height: 350px; display: flex; flex-direction: column; color: white; background-color: #251479;">
-
-                            <!-- icono fav -->
-                        <i class="fa-regular fa-heart favorite-icon" title="Marcar como favorito" 
-                        style="position: absolute; top: 10px; right: 10px; color: white; font-size: 20px; cursor: pointer;"></i>
-
-                        <img class="card-img-top" src="https://media.gq.com.mx/photos/66b3e2ab1eb4176c241add84/16:9/w_2240,c_limit/Mejores_series_de_anime.jpg"
-                            alt="Card image"
-                            style="height: 60%; object-fit: cover;">
-                        <div class="card-body" style="height: 40%; overflow: hidden;">
-                            <h4 class="card-title" style="font-size: 14px;">Demon Slayer</h4>
-                            <p class="card-text" style="font-size: 12px;">Tanjiro Kamado no tiene otra opción más que convertirse en cazador de demonios.</p>
-                            <a href="#" style="background-color: #7F00B2; color: white; font-size: 12px;">by @Seeling23</a>
-                            <a href="anime.html" title="MiAnime">
-                                <button style="margin-left: 50px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px;"><strong>Ver</strong></button>
-                            </a>
-          
-                        </div>
-                    </div>
-
-                    </div>
                 </div>
-
-          </div>
+            </div>
+            </div>
         </div>
-      </div>
-    </div>
+        </div>
+
   </div>
       
             <!---Aqui es donde esta lo mio-->

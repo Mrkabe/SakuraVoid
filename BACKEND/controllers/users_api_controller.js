@@ -42,6 +42,8 @@ exports.getUserById = (req, res) => {
         select: 'name'
       }
     })
+      .populate('siguiendo', 'name') // ✅ AÑADE ESTO
+      .populate('followers', 'name')
 
     .then(user => {
       if (!user) return res.status(404).json({ error: 'Usuario no encontrado' });
@@ -129,20 +131,43 @@ exports.toggleFollow = async (req, res) => {
 
   try {
     const user = await User.findById(userId);
-    const index = user.siguiendo.indexOf(targetUserId);
+    const targetUser = await User.findById(targetUserId);
 
-    if (index > -1) {
-      user.siguiendo.splice(index, 1); // dejar de seguir
+    if (!targetUser) {
+      return res.status(404).json({ error: "Usuario a seguir no encontrado" });
+    }
+
+    // Asegurar arrays inicializados
+    user.siguiendo ||= [];
+    targetUser.followers ||= [];
+
+    let following = false;
+
+    const indexInFollowing = user.siguiendo.indexOf(targetUserId);
+    const indexInFollowers = targetUser.followers.indexOf(userId);
+
+    if (indexInFollowing > -1) {
+      user.siguiendo.splice(indexInFollowing, 1);
+      if (indexInFollowers > -1) {
+        targetUser.followers.splice(indexInFollowers, 1);
+      }
     } else {
-      user.siguiendo.push(targetUserId); // seguir
+      user.siguiendo.push(targetUserId);
+      targetUser.followers.push(userId);
+      following = true;
     }
 
     await user.save();
+    await targetUser.save();
+
     res.status(200).json({
       message: "Relación actualizada",
-      siguiendo: user.siguiendo
+      following
     });
   } catch (err) {
+    console.error("❌ toggleFollow error:", err);
     res.status(500).json({ error: 'Error al seguir/dejar de seguir usuario' });
   }
 };
+
+

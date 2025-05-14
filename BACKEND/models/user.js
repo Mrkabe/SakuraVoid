@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
   }],
+  followers: [{
+  type: mongoose.Schema.Types.ObjectId,
+  ref: 'user'
+}], 
   
   joined_at: {
     type: Date,

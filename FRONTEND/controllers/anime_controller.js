@@ -72,14 +72,15 @@ function renderAnimeCard(anime, container) {
   ` : '';
 
   const verBtnYAutor = `
-  <a href="perfil.html" style="background-color: #7F00B2; color: white; font-size: 12px;">
-    by ${anime.uploadedBy?.name || 'Anon'}
-  </a>
-  <a href="anime.html?id=${anime._id}" title="Ver Anime">
-    <button style="margin-left: 10px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px;">
-      <strong>Ver</strong>
-    </button>
-  </a>
+    <a href="perfil.html?id=${anime.uploadedBy?._id || anime.uploadedBy}" style="background-color: #7F00B2; color: white; font-size: 12px;">
+      by ${anime.uploadedBy?.name || 'Anon'}
+    </a>
+
+    <a href="anime.html?id=${anime._id}" title="Ver Anime">
+      <button style="margin-left: 10px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px;">
+        <strong>Ver</strong>
+      </button>
+    </a>
 `;
 
 
@@ -425,15 +426,4 @@ async function confirmarEliminacionEpisodio() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const user = JSON.parse(sessionStorage.getItem("user"));
-  if (!user) return;
 
-  const userCard = document.querySelector(".card.text-white.text-center.p-4");
-  if (!userCard) return;
-
-  userCard.innerHTML = `
-    <h5>${user.name}</h5>
-    <p>@${user.name.replace(/\s+/g, '').toLowerCase()}</p>
-  `;
-});
