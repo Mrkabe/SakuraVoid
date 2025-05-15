@@ -15,13 +15,86 @@ async function renderUserCardPerfil() {
     const animes = await res.json();
     const mios = animes.filter(a => a.uploadedBy?._id === user.id || a.uploadedBy === user.id);
 
+    // HTML del card con botón "Editar"
     userCard.innerHTML = `
       <h5>${user.name}</h5>
       <p>@${user.name.replace(/\s+/g, '').toLowerCase()}</p>
       <p><strong>${mios.length}</strong> animes subidos</p>
+      <button class="btn btn-sm btn-light mt-2" data-bs-toggle="modal" data-bs-target="#modalEditarPerfil">
+        Editar
+      </button>
     `;
+
+    // Rellenar el modal con los datos actuales del usuario
+    document.getElementById("editName").value = user.name;
+    document.getElementById("editEmail").value = user.email;
+
   } catch (err) {
     console.error("Error al contar animes del usuario:", err);
+  }
+}
+
+//modificar usuarios
+async function guardarCambiosPerfil() {
+  const name = document.getElementById("editName").value.trim();
+  const email = document.getElementById("editEmail").value.trim();
+  const password = document.getElementById("editPassword").value;
+  const token = sessionStorage.getItem("token");
+
+  const body = { name, email };
+  if (password) body.password = password;
+
+  try {
+    const res = await fetch(`${local_url}/users/update`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify(body)
+    });
+
+    if (!res.ok) throw new Error("No se pudo actualizar");
+
+    const data = await res.json();
+
+    // ✅ Actualizar datos en sessionStorage
+    const userActualizado = {
+      ...JSON.parse(sessionStorage.getItem("user")),
+      name: data.user.name,
+      email: data.user.email
+    };
+    sessionStorage.setItem("user", JSON.stringify(userActualizado));
+
+    alert("Perfil actualizado");
+    location.reload();
+
+  } catch (err) {
+    console.error(err);
+    alert("Error al actualizar perfil");
+  }
+}
+
+//eliminar cuenta
+async function confirmarEliminarCuenta() {
+  if (!confirm("¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.")) return;
+
+  const token = sessionStorage.getItem("token");
+  try {
+    const res = await fetch(`${local_url}/users/delete`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    if (!res.ok) throw new Error("Error al eliminar cuenta");
+    alert("Cuenta eliminada correctamente");
+    sessionStorage.clear();
+    location.href = "login.html";
+  } catch (err) {
+    console.error(err);
+    alert("Error al eliminar cuenta");
   }
 }
 
@@ -198,6 +271,8 @@ window.toggleFollowUsuario = async function (event) {
 
     const data = await res.json();
     btn.textContent = data.following ? "Dejar de seguir" : "Seguir";
+    renderUsuariosSeguidos();
+    renderPerfilConsultado();
   } catch (err) {
     console.error("Error al seguir/dejar de seguir:", err);
     alert("No se pudo actualizar el seguimiento.");
@@ -229,4 +304,12 @@ document.addEventListener("DOMContentLoaded", () => {
     renderUsuariosSeguidos();
     renderPerfilConsultado();
   }
+  const checkbox = document.getElementById("mostrarPassword");
+  const passInput = document.getElementById("editPassword");
+  if (checkbox && passInput) {
+    checkbox.addEventListener("change", () => {
+      passInput.type = checkbox.checked ? "text" : "password";
+    });
+  }
+  
 });

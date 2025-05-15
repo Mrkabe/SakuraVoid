@@ -53,32 +53,18 @@ exports.getUserById = (req, res) => {
 }
 
 // Eliminar usuario
-exports.deleteUser = (req, res) => {
-  const id = req.params.id;
-
-  User.findByIdAndDelete(id)
-    .then(user => {
-      if (!user) return res.status(404).json({ error: 'Usuario no encontrado' });
-      res.json({ message: 'Usuario eliminado' });
-    })
-    .catch(err => res.status(500).json({ error: 'Error al eliminar usuario' }));
-}
-/*tambien agrega favoritos?
-exports.addFavorite = async (req, res) => {
-  const userId = req.params.id;
-  const { animeId } = req.body;
-
+exports.deleteUser = async (req, res) => {
   try {
-    const user = await User.findById(userId);
-    if (!user.favoritos.includes(animeId)) {
-      user.favoritos.push(animeId);
-      await user.save();
-    }
-    res.status(200).json({ message: 'Favorito agregado' });
-  } catch (error) {
-    res.status(500).json({ error: 'No se pudo agregar favorito' });
+    const userId = req.user._id;
+    await User.findByIdAndDelete(userId);
+    res.status(200).json({ message: "Cuenta eliminada correctamente" });
+  } catch (err) {
+    console.error("❌ Error al eliminar cuenta:", err);
+    res.status(500).json({ error: "Error al eliminar cuenta" });
   }
-}; */
+};
+
+
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
@@ -167,6 +153,28 @@ exports.toggleFollow = async (req, res) => {
   } catch (err) {
     console.error("❌ toggleFollow error:", err);
     res.status(500).json({ error: 'Error al seguir/dejar de seguir usuario' });
+  }
+};
+
+
+exports.updateProfile = async (req, res) => {
+  const userId = req.user._id;
+  const { name, email, password } = req.body;
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ error: "Usuario no encontrado" });
+
+    if (name) user.name = name;
+    if (email) user.email = email;
+    if (password) user.password = password; // se asume que el modelo usa hash en middleware
+
+    await user.save();
+
+    res.status(200).json({ message: "Perfil actualizado", user });
+  } catch (err) {
+    console.error("Error al actualizar perfil:", err);
+    res.status(500).json({ error: "Error al actualizar perfil" });
   }
 };
 

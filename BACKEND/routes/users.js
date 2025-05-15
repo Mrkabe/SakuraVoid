@@ -14,13 +14,14 @@ routerUsers.get('/', usersController.getAllUsers);
 routerUsers.get('/:id', usersController.getUserById);
 
 
-routerUsers.delete('/:id', requireAuth, usersController.deleteUser);
-//es lo mismo??
-//routerUsers.patch('/:id/favoritos', requireAuth, usersController.addFavorite);
+routerUsers.delete('/delete', requireAuth, usersController.deleteUser);
+
 // Agregar o quitar favorito
 routerUsers.patch('/favoritos', requireAuth, usersController.toggleFavorite);
 
 // Seguir o dejar de seguir usuario
 routerUsers.patch('/follow', requireAuth, usersController.toggleFollow);
+//modificar usuarios
+routerUsers.put('/update', requireAuth, usersController.updateProfile);
 
 module.exports = routerUsers;

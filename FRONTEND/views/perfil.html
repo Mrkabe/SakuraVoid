@@ -358,6 +358,38 @@
                     </div>
                 </div>
                 </div>
+                <!-- Modal para editar perfil -->
+                    <div class="modal fade" id="modalEditarPerfil" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content" style="background-color: #1a1339; color: white;">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Editar Perfil</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="formEditarUsuario">
+                            <label for="editName" class="form-label">Nombre</label>
+                            <input type="text" class="form-control mb-2" id="editName" required>
+
+                            <label for="editEmail" class="form-label">Correo</label>
+                            <input type="email" class="form-control mb-2" id="editEmail" required>
+
+                            <label for="editPassword" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control mb-2" id="editPassword">
+
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="mostrarPassword">
+                                <label class="form-check-label" for="mostrarPassword">Mostrar contraseña</label>
+                            </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-danger me-auto" onclick="confirmarEliminarCuenta()">Eliminar cuenta</button>
+                            <button class="btn btn-primary" onclick="guardarCambiosPerfil()">Guardar cambios</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
 
 
             <!-- JavaScript para alternar el estado del ícono -->
