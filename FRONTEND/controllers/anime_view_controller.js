@@ -40,7 +40,7 @@ function renderAnimeDetails(anime, container) {
     <img class="card-img-top" src="${anime.imgUrl}" alt="${anime.title}" style="height: 60%; object-fit: cover;">
     <div class="card-body" style="display: flex; flex-direction: column; flex-grow: 1; padding: 10px; font-size: 12px; justify-content: space-between;">
       <h4 class="card-title" style="font-size: 14px; margin: 0;">${anime.title}</h4>
-      <p class="card-text" style="font-size: 12px; margin-top: 5px;">${anime.description || ''}</p>
+      <p class="card-text truncate-description">${anime.description || ''}</p>
       <h1 style="background-color: #7F00B2; color: white; font-size: 12px; text-align: center;">by @${anime.uploadedBy?.name || 'Anon'}</h1>
       <button class="btn btn-sm btn-light mt-2" id="btnSeguirAutor" onclick="toggleFollowUsuario(event)" data-target-id="">
     </div>

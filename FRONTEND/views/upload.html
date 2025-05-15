@@ -127,6 +127,24 @@
         color: gray !important;
         opacity: 1 !important;
       }
+      .truncate-description {
+          display: -webkit-box;
+          -webkit-line-clamp: 3; /* muestra máximo 3 líneas */
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          
+      }
+
+    .card-actions {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 4px;
+      flex-wrap: wrap;
+
+    }
+
     </style>
     <script src="../controllers/env.js"></script>
     <script src="../controllers/auth_controller.js"></script>

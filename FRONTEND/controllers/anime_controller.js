@@ -84,18 +84,22 @@ function renderAnimeCard(anime, container) {
 `;
 
 
-  card.style = "width: 200px; height: 350px; display: flex; flex-direction: column; color: white; background-color: #251479; position: relative;";
-  card.innerHTML = `
-    <i class="fa-heart favorite-icon ${favoriteIds.includes(anime._id) ? 'fa-solid' : 'fa-regular'}" data-id="${anime._id}" title="Favorito"
-      style="position: absolute; top: 10px; right: 10px; color: white; font-size: 20px; cursor: pointer;"></i>
-    <img class="card-img-top" src="${anime.imgUrl || 'https://via.placeholder.com/200x150?text=Sin+imagen'}" alt="${anime.title}" style="height: 60%; object-fit: cover;">
-    <div class="card-body" style="height: 40%; overflow: hidden;">
-      <h4 class="card-title" style="font-size: 14px;">${anime.title}</h4>
-      <p class="card-text" style="font-size: 12px;">${anime.description || ''}</p>
+  card.style = "width: 200px; height: 400px; display: flex; flex-direction: column; color: white; background-color: #251479; position: relative;";
+ card.innerHTML = `
+  <i class="fa-heart favorite-icon ${favoriteIds.includes(anime._id) ? 'fa-solid' : 'fa-regular'}" data-id="${anime._id}" title="Favorito"
+    style="position: absolute; top: 10px; right: 10px; color: white; font-size: 20px; cursor: pointer;"></i>
+  <img class="card-img-top" src="${anime.imgUrl || 'https://via.placeholder.com/200x150?text=Sin+imagen'}" alt="${anime.title}" style="height: 60%; object-fit: cover;">
+  <div class="card-body" style="display: flex; flex-direction: column; height: 40%; overflow: hidden; padding: 10px;">
+    <h4 class="card-title" style="font-size: 14px;">${anime.title}</h4>
+    <p class="card-text truncate-description">${anime.description || ''}</p>
+
+    <div class="card-actions mt-auto">
       ${verBtnYAutor}
       ${modificarBtn}
     </div>
-  `;
+  </div>
+`;
+
 
   container.appendChild(card);
 
@@ -127,7 +131,7 @@ function renderCarrusel(animes) {
         <img src="${anime.imgUrl}" alt="${anime.title}" style="width: 65%; object-fit: cover;">
         <div style="width: 35%; color: white; padding: 10px; margin-top: 30px;">
           <h5>${anime.title}</h5>
-          <p style="font-size: 12px;">${anime.description || ''}</p>
+          <p class="card-text truncate-description">${anime.description || ''}</p>
           <p style="font-size: 12px;"><em>by: <strong>${anime.uploadedBy?.name || '@anon'}</strong></em></p>
           <a href="anime.html?id=${anime._id}" title="MiAnime">
             <button style="padding: 6px 12px; font-size: 12px; background: linear-gradient(to right, #007bff, #ff69b4); color: white; border: none; border-radius: 4px;"><strong>Empezar anime</strong></button>
